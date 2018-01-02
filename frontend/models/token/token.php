@@ -29,6 +29,7 @@ class Token
     public static function check_token()
     {
         $session=Yii::$app->session;
+
         //驗證session中token是否存在 不存在說明沒有註冊過獲取session已經過期
         if(!isset($session['member']['token']))return false;
         //驗證token是否過期

@@ -3,7 +3,7 @@ namespace frontend\controllers;
 use frontend\controllers\BaseController;
 use yii\web\Controller;
 use Yii;
-class SiteController extends Controller
+class SiteController extends BaseController
 {
 	//===========================
 	//首页

@@ -28,7 +28,7 @@
       </a>
     </li>
     <li>
-      <a href="javascript:;">
+      <a href="<?php echo \yii\helpers\Url::to(['product/category']); ?>">
         <p><img src="assets/shop/img/syfl_02.png"></p>
         <p>月食</p>
       </a>

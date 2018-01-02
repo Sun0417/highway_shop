@@ -23,9 +23,9 @@ class RegController extends BaseController
             //获取手机号
             $phone=Yii::$app->request->post('phone',false);if(!$phone)throw new \Exception('miss phone',-1);
             //openID是否存在
-            if(!isset(Yii::$app->$session['member']['openid']))throw new \Exception('miss openid',-1);
+            if(!isset(Yii::$app->session['member']['openid']))throw new \Exception('miss openid',-1);
             //获取openid
-            $openid=Yii::$app->$session['member']['openid'];
+            $openid=Yii::$app->session['member']['openid'];
             //發送驗證碼
             Reg::send_verification_code($openid,$phone);
             //返回

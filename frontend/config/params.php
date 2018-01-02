@@ -12,7 +12,8 @@ return [
                     'address_list'=>'address/api-get-address-list',
                     'address_add'=>'address/api-add-address',
                     'cart_list'=>'shopping-cart/api-get-shopping-cart',
-                    'product_detail'=>'product/api-get-product-detail'
+                    'product_detail'=>'product/api-get-product-detail',
+                    'add_cart'=>'shopping-cart/api-add-sku'
 			    ],
     'check_token_action'=>['reg/index','reg/send-code','reg/check-code'],
     'active'=>[
@@ -22,5 +23,6 @@ return [
                 'message'=>'消息',
                 'cart'=>'購物車',
                 'product'=>'商品',
+                'category'=>'分類',
     ]
 ];

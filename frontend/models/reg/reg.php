@@ -25,8 +25,8 @@ class Reg
         //清空cookie
         setcookie('orderId','');
          //接口结果 token放入session
-        $_SESSION['member']['token']=$response_data['data']['token'];
-        $_SESSION['member']['timeOut']=$response_data['data']['timeOut'];
+        $_SESSION['member']['token']=$response_data['token'];
+        $_SESSION['member']['timeOut']=$response_data['timeOut'];
     }
     //================================
     //獲取用戶的token
@@ -38,14 +38,14 @@ class Reg
         $query=array('openId'=>$openid,'phone'=>$phone);
          //请求 返回结果
         $response_data=Curl::get($api_url.$url,array(),$query);
-        if(!$response_data['orderId']||!isset($response_data['orderId']))throw new \Exception('miss orderId',-1);
+        if(!isset($response_data['orderId']))throw new \Exception('miss orderId',-1);
         //返回
         if(isset($_COOKIE['orderId']))
         {
             setcookie('orderId','');
-            setcookie('orderId',$response_data['data']['orderId'],time()+300);
+            setcookie('orderId',$response_data['orderId'],time()+300);
         }
-        else{setcookie('orderId',$response_data['data']['orderId'],time()+300);}
+        else{setcookie('orderId',$response_data['orderId'],time()+300);}
     }
 
 }

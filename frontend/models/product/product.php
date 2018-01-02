@@ -19,6 +19,7 @@ class Product
         $query=array('spuId'=>$spuId,'token'=>$token);
         //请求 返回结果
         $response_data=Curl::get($api_url.$url,array(),$query);
+
         //返回
         return $response_data;
     }
