@@ -32,14 +32,16 @@ class CartController extends BaseController
         try
         {
             //商品ID
-            $skuId=Yii::$app->request->post('skuId',false);if(!$skuId)throw new \Exception('miss skuId',-1);
+            $salesUnitId=Yii::$app->request->post('salesUnitId',false);if(!$salesUnitId)throw new \Exception('miss salesUnitId',-1);
             //數量
             $count=1;
+            //銷售單元
+            $salesUnitType=1;
             //令牌
             if(!isset(Yii::$app->session['member']['token']))throw new \Exception('miss token',-1);
             $token=Yii::$app->session['member']['token'];
             //發送驗證碼
-            Cart::add($skuId,$count,$token);
+            Cart::add($salesUnitId,$salesUnitType,$count,$token);
             //返回
             return \yii\helpers\Json::encode(['error'=>0,'message'=>'加入購物車成功']);
             

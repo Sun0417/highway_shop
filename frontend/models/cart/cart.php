@@ -22,12 +22,12 @@ class Cart
     }
     //======================
     //添加商品到購物車
-    public static function Add($skuId,$count,$token)
+    public static function Add($salesUnitId,$salesUnitType,$count,$token)
     {
         //请求接口
         $api_url=Yii::$app->params['api_url'];
         $url=Yii::$app->params['post_url']['add_cart'];
-        $query=array('skuId'=>$skuId,'count'=>$count,'token'=>$token);
+        $query=array('salesUnitId'=>$salesUnitId,'salesUnitType'=>$salesUnitType,'count'=>$count,'token'=>$token);
           //请求 返回结果
         $response_data=Curl::get($api_url.$url,array(),$query);
         //返回

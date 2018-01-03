@@ -102,14 +102,14 @@ $(function (){
     $(".pdf_btm > dd,.pdf_btm > dt").css('height',aa); 
 }) 
 $(document).ready(function(e) {
-  var skuId=$(this).attr('data-id');
+  var salesUnitId=$(this).attr('data-id');
 	//添加購物車
 	$('.add_cart').click(function(){
             loaderHelper.show({'text':"購物車添加中...."});
             $.ajax({
                   type: 'POST',
                   url:"<?php echo \yii\helpers\Url::to(['cart/add-cart']); ?>",
-                  data:{skuId:skuId},
+                  data:{salesUnitId:salesUnitId},
                   success: function(data){
                       loaderHelper.hide();
                       if(typeof data=='string')data=JSON.parse(data);
@@ -123,7 +123,7 @@ $(document).ready(function(e) {
                 }
             })
    })
-    var le=$('.pdf_btm dd').length;
+  var le=$('.pdf_btm dd').length;
 	if(le<=15)
 	{
 	  $('.pdf_more').css('display','none');
