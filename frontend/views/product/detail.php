@@ -12,6 +12,7 @@
 <script type="text/javascript" src="assets/shop/js/response.js"></script>
 <link rel="stylesheet" type="text/css" href="assets/shop/css/loadSimple.css">
 </head>
+
 <body>
 <header>
 </header>
