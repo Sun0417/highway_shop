@@ -14,7 +14,7 @@
                          <div class="shop_headlines iconfont icon-dianpu"><a href="javascript:;"><?php echo $vt['shopName'];  ?></a></div>
                          <button type="button" class="ck_button">清空</button>
                         </dt>
-                        <?php foreach($vt['shopSkus'] as $vt_sku): ?>
+                        <?php foreach($vt['salesUnits'] as $vt_sku): ?>
                             <dd class="sccart_dd cart_1">
                               <div class="sc_rolllayer">
                                  <div class="scrol_lt">
@@ -24,12 +24,12 @@
                                    </div>--><?php //echo $vt_sku['skuCover']; ?>
                                    <div class="scpro_img"><a href="javascript:;"><img src="assets/shop/img/proimg_01.png"></a></div>
                                    <div class="scpro_text">
-                                     <h4><?php echo $vt_sku['spuTitle']; ?></h4>
-                                     <p><span><?php echo $vt_sku['skuTitle']; ?></span><small>￥<?php echo $vt_sku['skuPrice']; ?> x <?php echo $vt_sku['count']; ?></small></p>
+                                     <h4><?php echo $vt_sku['title']; ?></h4>
+                                     <p><span><?php echo $vt_sku['viceTitle'];?></span><small>￥<?php echo $vt_sku['price']; ?> x <?php echo $vt_sku['buyCount']; ?></small></p>
                                      <div class="scpro_number">
-                                     <small rel="<?php echo $vt_sku['recordId']; ?>" num="<?php echo $vt_sku['count']; ?>" class="iconfont icon-jian cartqtydown"></small>
-                                     <span><?php echo $vt_sku['count']; ?></span>
-                                     <small rel="<?php echo $vt_sku['recordId']; ?>" num="<?php echo $vt_sku['count']; ?>" class="iconfont icon-jia cartqtyup"></small></div>
+                                     <small rel="<?php echo $vt_sku['recordId']; ?>" num="<?php echo $vt_sku['buyCount']; ?>" class="iconfont icon-jian cartqtydown"></small>
+                                     <span><?php echo $vt_sku['buyCount']; ?></span>
+                                     <small rel="<?php echo $vt_sku['recordId']; ?>" num="<?php echo $vt_sku['buyCount']; ?>" class="iconfont icon-jia cartqtyup"></small></div>
                                    </div>
                                   </div>
                                  <div class="scpro_delete" data-id="1"></div>
@@ -44,7 +44,7 @@
         <?php endif; ?>
         <div class="pao_xf">
            <div class="pao_jiage">總價：<strong>￥<?php echo $cart_list['totalPrice']; ?></strong><small>不含運費</small></div>
-           <div class="pao_btn"><button type="button">下单吃肉</button></div>
+           <div class="pao_btn"><a href='<?php echo \yii\helpers\Url::to(['order/index']); ?>'>下单吃肉</a></div>
        </div>
   </div>
 </article>
@@ -54,17 +54,17 @@
 $(document).ready(function(e) {
           currentUrl = "<?php echo \yii\helpers\Url::to(['cart/index']); ?>"
           updateCartInfoUrl = "<?php echo \yii\helpers\Url::to(['cart/edit-cart']); ?>"
-          //减
-          $(".cartqtydown").click(function(){
+            //减
+            $(".cartqtydown").click(function(){
             //购物车的主键ID
             $item_id = $(this).attr("rel");
             //购买数量
             num = $(this).attr("num");
-            //如果大于1 才会减去
-            if(num>1){
-              loaderHelper.show({'text':"购物车处理中...."});
-              //ajax请求
-              $.ajax({
+        //如果大于1 才会
+        if(num>1){
+                loaderHelper.show({'text':"购物车处理中...."});
+                //ajax请求
+                $.ajax({
                 async:true,
                 timeout: 6000,
                 dataType: 'json', 
@@ -78,10 +78,10 @@ $(document).ready(function(e) {
                     window.location.href=currentUrl;
                 },
                 error:function (XMLHttpRequest, textStatus, errorThrown){}
-              });
+                });
             }
-          });
-          //加
+        });
+        //加
         $(".cartqtyup").click(function(){
             //购物车的主键ID
             $item_id = $(this).attr("rel");

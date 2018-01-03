@@ -35,7 +35,7 @@ class Curl extends HttpCurl
         if(isset($response_data['error'])&&$response_data['error']==0)
         {
             //接口返回的data为空
-            if(!isset($response_data['data']))throw new \Exception('miss data',-1);
+            if(!isset($response_data['data']))return true;
             //返回
             return $response_data['data'];
         }

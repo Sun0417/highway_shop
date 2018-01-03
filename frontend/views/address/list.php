@@ -158,6 +158,7 @@ $(document).ready(function(e) {
 </footer>
 <script src="assets/shop/js/jquery-2.1.1.js"></script>
 <script type="text/javascript" src="assets/shop/js/jimiAlert.js"></script>
+<script type="text/javascript" src="assets/shop/js/controller.js"></script>
 <script>
 $(function(){
         //獲取radi選擇的值

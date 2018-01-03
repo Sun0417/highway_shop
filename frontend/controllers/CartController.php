@@ -7,6 +7,8 @@ use Yii;
 use  common\tool\HttpCurl;
 class CartController extends BaseController
 {
+    //关闭YiiPost的验证
+    public $enableCsrfValidation=false;
     //==========================
     //購物車列表
     public function actionIndex()
@@ -27,7 +29,7 @@ class CartController extends BaseController
     }
     //=========================
     //添加產品到購物車
-    public function acionAddCart()
+    public function actionAddCart()
     {
         try
         {

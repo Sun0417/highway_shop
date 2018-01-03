@@ -13,7 +13,7 @@ return [
                     'address_add'=>'address/api-add-address',
                     'cart_list'=>'shopping-cart/api-get-shopping-cart',
                     'product_detail'=>'product/api-get-product-detail',
-                    'add_cart'=>'shopping-cart/api-add-sku'
+                    'add_cart'=>'shopping-cart/api-add-sales-unit'
 			    ],
     'check_token_action'=>['reg/index','reg/send-code','reg/check-code'],
     'active'=>[

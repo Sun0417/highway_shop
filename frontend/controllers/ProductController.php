@@ -5,7 +5,7 @@ use frontend\controllers\BaseController;
 use yii\web\Controller;
 use frontend\models\product\Product;
 use Yii;    
-class ProductController extends Controller
+class ProductController extends BaseController
 {
     //关闭YiiPost的验证
     public $enableCsrfValidation=false;
@@ -25,7 +25,7 @@ class ProductController extends Controller
         }
         catch(\Exception $e){return Yii::$app->response->content="<script>alert('".$e->getMessage()."');history.go(-1);</script>";}
         //渲染
-        return $this->render('detail');
+        return $this->render('detail',['produt_detail'=>$produt_detail]);
     }
     //==========================
     //商品详情

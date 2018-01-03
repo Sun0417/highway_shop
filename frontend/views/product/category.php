@@ -56,31 +56,31 @@
              </a>
             </li>
             <li>
-             <a href="javascript:;">
+             <a href="<?php echo \yii\helpers\Url::to(['product/detail','spuId'=>2]); ?>">
                <p><small style="background:url(assets/shop/img/proimg_03.png) center 0 no-repeat;"></small></p>
                <h3>首長貝柱1盒(2斤 /盒)，原料出口日本歐美等國...</h3>
              </a>
             </li>
             <li>
-             <a href="javascript:;">
+             <a href="<?php echo \yii\helpers\Url::to(['product/detail','spuId'=>3]); ?>">
                <p><small style="background:url(assets/shop/img/proimg_01.png) center 0 no-repeat;"></small></p>
                <h3>首長貝柱1盒(2斤 /盒)，原料出口日本歐美等國...</h3>
              </a>
             </li>
             <li>
-             <a href="javascript:;">
+             <a href="<?php echo \yii\helpers\Url::to(['product/detail','spuId'=>4]); ?>">
                <p><small style="background:url(assets/shop/img/proimg_02.png) center 0 no-repeat;"></small></p>
                <h3>首長貝柱1盒(2斤 /盒)，原料出口日本歐美等國...</h3>
              </a>
             </li>
             <li>
-             <a href="javascript:;">
+             <a href="<?php echo \yii\helpers\Url::to(['product/detail','spuId'=>5]); ?>">
                <p><small style="background:url(assets/shop/img/proimg_03.png) center 0 no-repeat;"></small></p>
                <h3>首長貝柱1盒(2斤 /盒)，原料出口日本歐美等國...</h3>
              </a>
             </li>
             <li>
-             <a href="javascript:;">
+             <a href="<?php echo \yii\helpers\Url::to(['product/detail','spuId'=>6]); ?>">
                <p><small style="background:url(assets/shop/img/proimg_01.png) center 0 no-repeat;"></small></p>
                <h3>美國自然牛USDAPRIME極佳級，厚排,全國配送...</h3>
              </a>

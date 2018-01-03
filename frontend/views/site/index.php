@@ -2,7 +2,7 @@
   <ul class="top_tab">
     <li class="ttab_dq"><a href="javascript:;">推薦</a></li>
     <li><a href="javascript:;">熱門</a></li>
-    <li><a href="javascript:;">搜索</a></li>
+    <li><a href="javascript:;" class="ss_btn">搜索</a></li>
   </ul>
 </header>
 
@@ -65,7 +65,7 @@
       </div>
     </li>
     <li>
-      <div class="splb_top"><a href="javascript:;">
+      <div class="splb_top"><a href="<?php echo \yii\helpers\Url::to(['product/detail','spuId'=>2]); ?>">
         <p><img src="assets/shop/img/proimg_02.png" ></p>
         <p>首長貝柱1盒(2斤 /盒)，原料出口日本歐美等國</p>
       </a></div>
@@ -75,7 +75,37 @@
       </div>
     </li>
     <li>
-      <div class="splb_top"><a href="javascript:;">
+      <div class="splb_top"><a href="<?php echo \yii\helpers\Url::to(['product/detail','spuId'=>1]); ?>">
+        <p><img src="assets/shop/img/proimg_03.png" ></p>
+        <p class="content">新西蘭羔羊卷；1盒(250g/盒)；羊肩精華火鍋切片</p>
+      </a></div>
+      <div class="splb_btm">
+       <a href="javascript:;" class="splb_yh"><small><img src="assets/shop/img/tx_img.png"></small><span>Woman</span></a>
+       <a href="javascript:;" class="splb_bq">#生鮮</a>
+      </div>
+    </li>
+    <li>
+      <div class="splb_top"><a href="<?php echo \yii\helpers\Url::to(['product/detail','spuId'=>2]); ?>">
+        <p><img src="assets/shop/img/proimg_03.png" ></p>
+        <p class="content">新西蘭羔羊卷；1盒(250g/盒)；羊肩精華火鍋切片</p>
+      </a></div>
+      <div class="splb_btm">
+       <a href="javascript:;" class="splb_yh"><small><img src="assets/shop/img/tx_img.png"></small><span>Woman</span></a>
+       <a href="javascript:;" class="splb_bq">#生鮮</a>
+      </div>
+    </li>
+    <li>
+      <div class="splb_top"><a href="<?php echo \yii\helpers\Url::to(['product/detail','spuId'=>1]); ?>">
+        <p><img src="assets/shop/img/proimg_03.png" ></p>
+        <p class="content">新西蘭羔羊卷；1盒(250g/盒)；羊肩精華火鍋切片</p>
+      </a></div>
+      <div class="splb_btm">
+       <a href="javascript:;" class="splb_yh"><small><img src="assets/shop/img/tx_img.png"></small><span>Woman</span></a>
+       <a href="javascript:;" class="splb_bq">#生鮮</a>
+      </div>
+    </li>
+    <li>
+      <div class="splb_top"><a href="<?php echo \yii\helpers\Url::to(['product/detail','spuId'=>6]); ?>">
         <p><img src="assets/shop/img/proimg_03.png" ></p>
         <p class="content">新西蘭羔羊卷；1盒(250g/盒)；羊肩精華火鍋切片</p>
       </a></div>
@@ -85,8 +115,27 @@
       </div>
     </li>
   </ul>
+  <div class="popup_mask" style="display:none;"></div>
+  <!--搜索功能-->
+  <div class="ss_search">
+   <div class="sss_nr" >
+    <small><input type="text" name="tname" placeholder="请输入您要搜索的关键词"></small>
+    <span><button class="ss_gbbtn">搜索</button></span>
+   </div>
+  </div>
 </article>
 <script src="assets/shop/js/jquery-2.1.1.js"></script>
 <script>
-
+$(function(){
+	  var h=$('.ss_search').outerHeight();
+	  var w=$('.ss_search').outerWidth();
+      $('.ss_btn').click(function(){
+		$('.popup_mask').fadeIn(200);
+		$('.ss_search').css({'opacity':0,top:'-30%',left:'0',display:'block'}).animate({top:'0','opacity':1},240);
+	  })
+	  $('.popup_mask,.ss_gbbtn').click(function(){
+		$('.popup_mask').fadeOut(200);
+		$('.ss_search').animate({top:'-30%','opacity':0},240,'swing',function(){$('.ss_search').hide()});
+	  })
+})
 </script>

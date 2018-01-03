@@ -50,7 +50,6 @@
 <script type="text/javascript" src="assets/shop/js/jimiAlert.js"></script>
 <script type="text/javascript" src="assets/shop/js/controller.js"></script>
 <script type="text/javascript" src="assets/shop/js/touchslider.js"></script>
-
 <script type="text/javascript">
 console=window.console || {dir:new Function(),log:new Function()};
 var active=0,
