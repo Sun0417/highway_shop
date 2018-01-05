@@ -4,6 +4,7 @@ namespace frontend\controllers;
 use frontend\controllers\BaseController;
 use yii\web\Controller;
 use frontend\models\product\Product;
+use frontend\models\cart\Cart;
 use Yii;    
 class ProductController extends BaseController
 {
@@ -22,10 +23,15 @@ class ProductController extends BaseController
             $token=Yii::$app->session['member']['token'];
             //获取参数
             $produt_detail=Product::get_product_deatil($spuId,$token);
+            //購物車
+            $cart_list=Cart::get_cart_list();
+            $flag=false;
+            if(isset($cart_list['detail'])&&$cart_list['detail']){$flag=true;}
         }
         catch(\Exception $e){return Yii::$app->response->content="<script>alert('".$e->getMessage()."');history.go(-1);</script>";}
+        $val='http://weixintest8888.tunnel.echomod.cn/highway_shop/frontend/web/assets/shop/img/proxq_img_09.png';
         //渲染
-        return $this->render('detail',['produt_detail'=>$produt_detail]);
+        return $this->render('detail',['produt_detail'=>$produt_detail,'val'=>$val,'flag'=>$flag]);
     }
     //==========================
     //商品详情

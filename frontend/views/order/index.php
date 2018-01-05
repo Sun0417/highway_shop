@@ -15,44 +15,24 @@
 <header>
 </header>
 <article class="paddingbtm">
-   <dl class="coodl">
-    <dt>往事雲煙生鮮專賣</dt>
-    <dd class="coo_pro">
-      <h4><span>美國自然牛USDAPRIME極...</span><small>199 x 1</small></h4>
-      <p>100g美国牛肉九折</p>
-    </dd>
-    <dd class="coo_pro">
-      <h4><span>美國自然牛USDAPRIME極...</span><small>199 x 1</small></h4>
-      <p>100g美国牛肉九折</p>
-    </dd>
-    <dd><span>运费：</span><small>￥12</small></dd>
-    <dd><span>备注：</span><small><input type="text" name="tname" placeholder="如果您有什么特殊的要求，请在此备注"></small></dd>
+<?php if($order_list['detail']&&isset($order_list['detail'])): ?> 
+  <?php foreach($order_list['detail'] as $vt): ?>
+        <dl class="coodl">
+          <dt><?php echo $vt['shopName']; ?></dt>
+          <?php foreach($vt['salesUnits'] as $key=>$vt_sku): ?>
+          <dd class="coo_pro">
+            <h4><span><?php echo $vt_sku['title'];?></span><small>￥<?php echo $vt_sku['price']; ?> x <?php echo $vt_sku['buyCount']; ?></small></h4>
+            <p><?php echo $vt_sku['viceTitle']; ?></p>
+          </dd>
+          <dd><span>运费：</span><small>￥<?php echo $vt['freight']; ?></small></dd>
+          <dd><span>备注：</span><small><input type="text" name="tname" placeholder="如果您有什么特殊的要求，请在此备注"></small></dd>
+          <?php  endforeach;?>    
+        </dl>
+   <?php  endforeach;?>    
+   <dl class="coodl">  
+    <dd><span>总价：</span><small><strong>￥<?php echo $order_list['totalPrice']; ?></strong></small></dd>
    </dl>
-   <dl class="coodl">
-    <dt>往事雲煙生鮮專賣</dt>
-    <dd class="coo_pro">
-      <h4><span>美國自然牛USDAPRIME極...</span><small>199 x 1</small></h4>
-      <p>100g美国牛肉九折</p>
-    </dd>
-    <dd><span>运费：</span><small>￥12</small></dd>
-    <dd><span>备注：</span><small><input type="text" name="tname" placeholder="如果您有什么特殊的要求，请在此备注"></small></dd>
-   </dl>
-   <dl class="coodl">
-    <dt>往事雲煙生鮮專賣</dt>
-    <dd class="coo_pro">
-      <h4><span>美國自然牛USDAPRIME極...</span><small>199 x 1</small></h4>
-      <p>100g美国牛肉九折</p>
-    </dd>
-    <dd class="coo_pro">
-      <h4><span>美國自然牛USDAPRIME極...</span><small>199 x 1</small></h4>
-      <p>100g美国牛肉九折</p>
-    </dd>
-    <dd><span>运费：</span><small>￥12</small></dd>
-    <dd><span>备注：</span><small><input type="text" name="tname" placeholder="如果您有什么特殊的要求，请在此备注"></small></dd>
-   </dl>
-   <dl class="coodl">
-    <dd><span>总价：</span><small><strong>￥1890.0</strong></small></dd>
-   </dl>
+<?php endif;?>
 </article>
 <footer>
   <ul class="ab_rightbtn">

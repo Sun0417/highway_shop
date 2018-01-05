@@ -35,8 +35,8 @@ class CartController extends BaseController
         {
             //商品ID
             $salesUnitId=Yii::$app->request->post('salesUnitId',false);if(!$salesUnitId)throw new \Exception('miss salesUnitId',-1);
-            //數量
-            $count=1;
+            //商品ID
+            $count=Yii::$app->request->post('count',false);if(!$count)throw new \Exception('miss count',-1);
             //銷售單元
             $salesUnitType=1;
             //令牌
@@ -56,14 +56,14 @@ class CartController extends BaseController
         try
         {
             //購物車記錄ID
-            $recordId=Yii::$app->request->post('recordId',false);if(!$recordId)throw new \Exception('miss recordId',-1);
+            $salesUnitNo=Yii::$app->request->post('salesUnitNo',false);if(!$salesUnitNo)throw new \Exception('miss salesUnitNo',-1);
             //修改數量
             $count=Yii::$app->request->post('count',false);if(!$count)throw new \Exception('miss count',-1);
             //令牌
             if(!isset(Yii::$app->session['member']['token']))throw new \Exception('miss token',-1);
             $token=Yii::$app->session['member']['token'];
             //更新購物車
-            Cart::update($recordId,$count,$token);
+            Cart::update($salesUnitNo,$count,$token);
             //返回
             return \yii\helpers\Json::encode(['error'=>0,'message'=>'修改成功']);
             
@@ -76,12 +76,12 @@ class CartController extends BaseController
         try
         {
             //購物車記錄ID
-            $recordId=Yii::$app->request->post('recordId',false);if(!$recordId)throw new \Exception('miss recordId',-1);
+            $salesUnitNo=Yii::$app->request->post('salesUnitNo',false);if(!$salesUnitNo)throw new \Exception('miss salesUnitNo',-1);
             //令牌
             if(!isset(Yii::$app->session['member']['token']))throw new \Exception('miss token',-1);
             $token=Yii::$app->session['member']['token'];
             //刪除購物車中的記錄
-            Cart::del($recordId,$token);
+            Cart::del($salesUnitNo,$token);
             //返回
             return \yii\helpers\Json::encode(['error'=>0,'message'=>'刪除成功']);
             

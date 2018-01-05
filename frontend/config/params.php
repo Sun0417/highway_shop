@@ -15,7 +15,8 @@ return [
                     'product_detail'=>'product/api-get-product-detail',
                     'add_cart_record'=>'shopping-cart/api-add-sales-unit',
                     'edit_cart_record'=>'shopping-cart/api-update-record',//修改购物车中某个记录的数量
-                    'del_cart_record'=>'shopping-cart/api-del-record'
+                    'del_cart_record'=>'shopping-cart/api-del-record',
+                    'buying_detail'=>'buying/api-apply-create-order-by-shopping-cart'//訂單詳情頁面
 			    ],
     'check_token_action'=>['reg/index','reg/send-code','reg/check-code'],
     'active'=>[

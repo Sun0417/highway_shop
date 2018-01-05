@@ -5,7 +5,7 @@ use Yii;
 use common\tool\Curl;
 class Cart 
 {
-    //查詢收貨地址
+    //查詢購物車
     public static function get_cart_list()
     {
         $session=Yii::$app->session;
@@ -41,7 +41,7 @@ class Cart
         //请求接口
         $api_url=Yii::$app->params['api_url'];
         $url=Yii::$app->params['post_url']['edit_cart_record'];
-        $query=array('recordId'=>$recordId,'count'=>$count,'token'=>$token);
+        $query=array('salesUnitNo'=>$recordId,'count'=>$count,'token'=>$token);
           //请求 返回结果
         $response_data=Curl::get($api_url.$url,array(),$query);
         //返回
@@ -54,7 +54,7 @@ class Cart
         //请求接口
         $api_url=Yii::$app->params['api_url'];
         $url=Yii::$app->params['post_url']['del_cart_record'];
-        $query=array('recordId'=>$recordId,'token'=>$token);
+        $query=array('salesUnitNo'=>$recordId,'token'=>$token);
           //请求 返回结果
         $response_data=Curl::get($api_url.$url,array(),$query);
         //返回

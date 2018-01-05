@@ -19,7 +19,7 @@
 </header>
 <article class="paddingbtm">
   <div class="shoppingcart">
-       <?php if($cart_list['detail']&&isset($cart_list['detail'])): ?> 
+       <?php if(isset($cart_list['detail'])&&$cart_list['detail']): ?> 
                 <?php foreach($cart_list['detail'] as $vt): ?>
                 	<dl>
                       <form name="form1" method="post" action="">
@@ -44,12 +44,12 @@
                                      <h4><?php echo $vt_sku['title']; ?></h4>
                                      <p><span><?php echo $vt_sku['viceTitle'];?></span><small>￥<?php echo $vt_sku['price']; ?> x <?php echo $vt_sku['buyCount']; ?></small></p>
                                      <div class="scpro_number">
-                                     <small rel="<?php echo $vt_sku['recordId']; ?>" data-id='<?php echo $vt_sku['buyCount']; ?>' class="iconfont icon-jian cartqtydown"></small>
+                                     <small rel="<?php echo $vt_sku['salesUnitNo']; ?>" data-id='<?php echo $vt_sku['buyCount']; ?>' class="iconfont icon-jian cartqtydown"></small>
                                      <span><?php echo $vt_sku['buyCount']; ?></span>
-                                     <small rel="<?php echo $vt_sku['recordId']; ?>" class="iconfont icon-jia cartqtyup"></small></div>
+                                     <small rel="<?php echo $vt_sku['salesUnitNo']; ?>" class="iconfont icon-jia cartqtyup"></small></div>
                                    </div>
                                   </div>
-                                 <div rel="<?php echo $vt_sku['recordId']; ?>" class="scpro_delete btn-remove" data-val="<?php echo $vt['shopId'];  ?>" data-id="<?php echo  $key; ?>"></div>
+                                 <div rel="<?php echo $vt_sku['salesUnitNo']; ?>" class="scpro_delete btn-remove" data-val="<?php echo $vt['shopId'];  ?>" data-id="<?php echo  $key; ?>"></div>
                               </div>
                             </dd>
                         <?php  endforeach;?>    
@@ -61,7 +61,7 @@
         <?php endif; ?>
         <div class="pao_xf">
            <div class="pao_jiage">總價：<strong>￥<?php echo $cart_list['totalPrice']; ?></strong><small>不含運費</small></div>
-           <div class="pao_btn"><a href='<?php echo \yii\helpers\Url::to(['order/index']); ?>'>下单吃肉</a></div>
+           <div class="pao_btn"><button onclick="location.href='<?php echo \yii\helpers\Url::to(['order/index']); ?>'">下单吃肉</button></div>
        </div>
   </div>
 </article>
@@ -76,7 +76,7 @@ $(document).ready(function(e) {
             $(".cartqtydown").click(function(e){
             e.preventDefault(); 
             //购物车的主键ID
-            var recordId = $(this).attr("rel");
+            var salesUnitNo = $(this).attr("rel");
             var num = $(this).attr('data-id');
             var keys = $(this).attr('data-val');
             //购买数量
@@ -90,11 +90,15 @@ $(document).ready(function(e) {
                         timeout: 6000,
                         dataType: 'json', 
                         type:'post',
-                        data:{recordId:recordId,count:count},
+                        data:{salesUnitNo:salesUnitNo,count:count},
                         url:updateCartInfoUrl,
                         success:function(data, textStatus){ 
                             if(typeof data=='string')data=JSON.parse(data);
-                            if(data.error!=0){alert(data.message);return false;}
+                            if(data.error!=0)
+                            {
+                                loaderHelper.hide();
+                                alert(data.message);return false;
+                            }
                             window.location.reload();
                         }, 
                         error:function(res){
@@ -108,7 +112,7 @@ $(document).ready(function(e) {
         //加
         $(".cartqtyup").click(function(){
             //购物车的主键ID
-            var recordId = $(this).attr("rel");
+            var salesUnitNo = $(this).attr("rel");
             //购买数量
             var count=1;
             loaderHelper.show({'text':"购物车处理中...."});
@@ -118,11 +122,15 @@ $(document).ready(function(e) {
               timeout: 6000,
               dataType: 'json', 
               type:'post',
-              data:{recordId:recordId,count:count},
+              data:{salesUnitNo:salesUnitNo,count:count},
               url:updateCartInfoUrl,
               success:function(data, textStatus){ 
                     if(typeof data=='string')data=JSON.parse(data);
-                    if(data.error!=0){alert(data.message);return false;}
+                    if(data.error!=0)
+                    {
+                        loaderHelper.hide();
+                        alert(data.message);return false;
+                    }
                     window.location.reload();
               },
               error:function(res){
@@ -133,7 +141,7 @@ $(document).ready(function(e) {
         });});
         //删除商品
         $(".btn-remove").click(function(){
-          var recordId = $(this).attr("rel");
+          var salesUnitNo = $(this).attr("rel");
           var keys = $(this).attr("data-id");
           var shopId = $(this).attr("data-val");
           var delCartInfoUrl="<?php echo \yii\helpers\Url::to(['cart/del-cart-record']); ?>";
@@ -143,17 +151,22 @@ $(document).ready(function(e) {
                     timeout: 6000,
                     dataType: 'json', 
                     type:'POST',
-                    data:{recordId:recordId},
+                    data:{salesUnitNo:salesUnitNo},
                     url:delCartInfoUrl,
                     success:function(data, textStatus){ 
+                        if(typeof data=='string')data=JSON.parse(data);
+                        if(data.error!=0)
+                        {
+                            loaderHelper.hide();
+                            alert(data.message);return false;
+                        }
                         $('.cart_'+keys+'_'+shopId).fadeOut({
                             duration: 300,
                             complete: function(){
                                 $('.cart_'+keys+'_'+shopId).remove();
                             }
                         })
-                        if(typeof data=='string')data=JSON.parse(data);
-                        if(data.error!=0){alert(data.message);return false;}
+                       
                         window.location.reload();
                 },
                 error:function(res){
@@ -254,8 +267,9 @@ $(document).ready(function(e) {
   <ul class="menu_ul">
     <li class="<?php echo isset($this->params['index'])?$this->params['index']:''; ?>"><a href="<?php echo \yii\helpers\Url::to(['site/index']); ?>" class="iconfont icon-shouye">首頁</a></li>
     <li class="<?php echo isset($this->params['culture'])?$this->params['culture']:''; ?>"><a href="<?php echo \yii\helpers\Url::to(['culture/index']); ?>" class="iconfont icon-wenhua">文化</a></li>
-    <li class="<?php echo isset($this->params['cart'])?$this->params['cart']:''; ?>"><a href="<?php echo \yii\helpers\Url::to(['cart/index']); ?>" class="iconfont icon-gouwuche">購物車</a></li>
-    <li class="<?php echo isset($this->params['message'])?$this->params['message']:''; ?>"><a href="<?php echo \yii\helpers\Url::to(['message/index']); ?>" class="iconfont icon-xiaoxi">消息<i></i></a></li>
+    <li class="<?php echo isset($this->params['cart'])?$this->params['cart']:''; ?>">
+<a href="<?php echo \yii\helpers\Url::to(['cart/index']); ?>" class="iconfont icon-gouwuche">購物車 <?php if(isset($cart_list['detail'])&&$cart_list['detail']): ?><i></i><?php endif; ?></a></li>
+    <li class="<?php echo isset($this->params['message'])?$this->params['message']:''; ?>"><a href="<?php echo \yii\helpers\Url::to(['message/index']); ?>" class="iconfont icon-xiaoxi">消息</a></li>
     <li class="<?php echo isset($this->params['member'])?$this->params['member']:''; ?>"><a href="<?php echo \yii\helpers\Url::to(['member/index']); ?>" class="iconfont icon-wode">我的</a></li>
   </ul>
 </footer>
