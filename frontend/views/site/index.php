@@ -125,6 +125,7 @@
   </div>
 </article>
 <script src="assets/shop/js/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="assets/shop/js/touchslider.js"></script>
 <script>
 $(function(){
 	  var h=$('.ss_search').outerHeight();
@@ -138,4 +139,26 @@ $(function(){
 		$('.ss_search').animate({top:'-30%','opacity':0},240,'swing',function(){$('.ss_search').hide()});
 	  })
 })
+console=window.console || {dir:new Function(),log:new Function()};
+var active=0,
+	as=document.getElementById('pagenavi').getElementsByTagName('a');
+for(var i=0;i<as.length;i++){
+	(function(){
+		var j=i;
+		as[i].onclick=function(){
+			t4.slide(j);
+			return false;
+		}
+	})();
+}
+var t4=new TouchSlider('slider4',{speed:1000, direction:0, interval:6000, fullsize:true});
+t4.on('before',function(m,n){
+    as[m].className='';
+	as[n].className='active';
+})
+
+var control = navigator.control || {};
+    if (control.gesture) {
+        control.gesture(false);
+    }
 </script>

@@ -13,7 +13,9 @@ return [
                     'address_add'=>'address/api-add-address',
                     'cart_list'=>'shopping-cart/api-get-shopping-cart',
                     'product_detail'=>'product/api-get-product-detail',
-                    'add_cart'=>'shopping-cart/api-add-sales-unit'
+                    'add_cart_record'=>'shopping-cart/api-add-sales-unit',
+                    'edit_cart_record'=>'shopping-cart/api-update-record',//修改购物车中某个记录的数量
+                    'del_cart_record'=>'shopping-cart/api-del-record'
 			    ],
     'check_token_action'=>['reg/index','reg/send-code','reg/check-code'],
     'active'=>[

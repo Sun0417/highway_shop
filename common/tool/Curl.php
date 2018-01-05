@@ -2,6 +2,7 @@
 namespace common\tool;
 //http请求
 use common\tool\HttpCurl;
+use yii\log\FileTarget;
 class Curl extends HttpCurl
 {
     //==========================
@@ -40,6 +41,10 @@ class Curl extends HttpCurl
             return $response_data['data'];
         }
         //報錯
-        if(isset($response_data['msg'])) throw new \Exception($response_data['msg'],-1); else throw new \Exception("報錯信息缺失",-1);
+        if(isset($response_data['msg']))
+        {
+            throw new \Exception($response_data['msg'],-1);
+        }
+        else throw new \Exception("報錯信息缺失",-1);
     }
 }
