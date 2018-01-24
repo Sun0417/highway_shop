@@ -4,7 +4,7 @@
 <meta charset='utf-8' />
 <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
 <meta name="format-detection" content="telephone=no"/>
-<title>收藏</title>
+<title>牛肉哥生鮮專賣</title>
 <link href="assets/shop/css/global.css" rel="stylesheet" type="text/css">
 <link href="assets/shop/css/font.css" rel="stylesheet" type="text/css">
 <link href="assets/shop/css/style.css" rel="stylesheet" type="text/css">
@@ -13,13 +13,16 @@
 </head>
 <body>
 <header>
-  <ul class="top_tab">
-    <li class="ttab_dq"><a href="<?php echo yii\helpers\Url::to(['collection/product']); ?>">产品</a></li>
-    <li><a href="<?php echo yii\helpers\Url::to(['collection/article']); ?>">文化</a></li>
-  </ul>
 </header>
 <article>
-  <div class="clist_tab paddingtop">
+  <div class="shp_top" style="background:url(assets/shop/img/proimg_01.png) center center no-repeat; background-size:auto 100%;">
+     <div class="shp_hmb">
+        <p><small><img src="assets/shop/img/tx_img_04.png" ></small></p>
+        <p>往事雲煙生鮮專賣</p>
+        <p><a href="javascript:;">取消关注</a></p>
+     </div>
+  </div>
+  <div class="clist_tab">
     <div class="clist_tab_nr"> 
         <ul>
           <li>

@@ -19,4 +19,17 @@ class MemberController extends BaseController
         $view->params['text']=Yii::$app->params['active']['member'];
         return $this->render('index');
     }
+    //==========================
+    //个人中心
+    public function actionDetail()
+    {
+        $this->layout=false;
+        //佈局視圖
+        $view = Yii::$app->view;
+        //佈局狀態
+        $view->params['member'] = "mn_dq";
+        //title
+        $view->params['text']=Yii::$app->params['active']['member'];
+        return $this->render('detail');
+    }
 }

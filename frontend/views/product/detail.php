@@ -45,7 +45,7 @@
 </header>
 <article class="paddingbtm">
   <div class="pd_publisher">
-    <div class="pdp_left"><a href="javascript:;">
+    <div class="pdp_left"><a href="<?php echo yii\helpers\Url::to(['shop/index']); ?>">
         <small>
           <?php if($produt_detail['shop']['avatar']): ?>
               <img src="<?php echo $produt_detail['shop']['avatar'] ?>">
