@@ -21,6 +21,17 @@ class AddressController extends BaseController
         return $this->render('list',['address_list'=>$list]);
     }
     //======================
+    //地址选择页面
+    public function actionAddressSelection()
+    {
+        $this->layout=false;
+        //獲取地址列表
+        try{$list=Address::get_address();}
+        catch(\Exception $e){return Yii::$app->response->content="<script>alert('".$e->getMessage()."');history.go(-1);</script>";}
+        //渲染
+        return $this->render('address-selection',['address_list'=>$list]);
+    }
+    //======================
     //地址添加
     public function actionAdd()
     {

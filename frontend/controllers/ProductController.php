@@ -4,7 +4,7 @@ namespace frontend\controllers;
 use frontend\controllers\BaseController;
 use yii\web\Controller;
 use frontend\models\product\Product;
-use frontend\models\cart\Cart;
+use frontend\models\cart\cart;
 use Yii;    
 class ProductController extends BaseController
 {
@@ -18,6 +18,7 @@ class ProductController extends BaseController
         try
         {
             $spuId=Yii::$app->request->get('spuId',false);if(!$spuId)throw new \Exception("miss spuId",-1);
+          
             //令牌
             if(!isset(Yii::$app->session['member']['token']))throw new \Exception('miss token',-1);
             $token=Yii::$app->session['member']['token'];
@@ -29,9 +30,8 @@ class ProductController extends BaseController
             if(isset($cart_list['detail'])&&$cart_list['detail']){$flag=true;}
         }
         catch(\Exception $e){return Yii::$app->response->content="<script>alert('".$e->getMessage()."');history.go(-1);</script>";}
-        $val='http://weixintest8888.tunnel.echomod.cn/highway_shop/frontend/web/assets/shop/img/proxq_img_09.png';
         //渲染
-        return $this->render('detail',['produt_detail'=>$produt_detail,'val'=>$val,'flag'=>$flag]);
+        return $this->render('detail',['produt_detail'=>$produt_detail]);
     }
     //==========================
     //商品详情

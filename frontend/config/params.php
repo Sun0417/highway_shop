@@ -1,12 +1,12 @@
 <?php
 return [
     'adminEmail' => 'admin@example.com',
-    'api_url'=>'http://jiangs8888.tunnel.echomod.cn/smartShop/backend/web/index.php?r=',
+    'api_url'=>'http://app1.zhengshan.store/smartShop/backend/web/index.php?r=',
     //请求的接口
     'post_url'=>[
-    				'member_sign_wechat'=>'member/api-sign-in-by-wechat-open-id',
+    				'member_sign_wechat'=>'member/api-get-token-by-wechat-open-id',
     				'member_apply'=>'member/api-apply-sign-up',
-    				'member_sign'=>'member/api-sign-up',
+    				'member_sign'=>'member/api-sign-up-or-sign-in',
     				'address_areas'=>'area/api-get-top-areas',
     				'address_child'=>'area/api-get-child-areas',
                     'address_list'=>'address/api-get-address-list',
@@ -16,7 +16,12 @@ return [
                     'add_cart_record'=>'shopping-cart/api-add-sales-unit',
                     'edit_cart_record'=>'shopping-cart/api-update-record',//修改购物车中某个记录的数量
                     'del_cart_record'=>'shopping-cart/api-del-record',
-                    'buying_detail'=>'buying/api-apply-create-order-by-shopping-cart'//訂單詳情頁面
+                    'buying_detail'=>'buying/api-apply-create-order-by-shopping-cart',//訂單詳情頁面
+                    'commit_order'=>'buying/api-create-order-by-shopping-cart',//訂單提交
+                    'banner_list'=>'recommend/api-get-banner',//首页幻灯片
+                    'category_list'=>'category/api-get-categories',//首页分类
+                    'recommend_list'=>'recommend/api-get-recommend-product-unit',//推荐热门
+                    'callback_url'=>'http://app1.zhengshan.store/smartShop/backend/web/index.php'
 			    ],
     'check_token_action'=>['reg/index','reg/send-code','reg/check-code'],
     'active'=>[

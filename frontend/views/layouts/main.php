@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" href="assets/shop/css/loadSimple.css">
 <script src="assets/shop/js/jquery-2.1.1.js"></script>
 <script type="text/javascript" src="assets/shop/js/response.js"></script>
+<script type="text/javascript" src="assets/shop/js/touchslide.1.1.js"></script>
 </head>
 <link rel="stylesheet" type="text/css" href="assets/shop/css/loader.min.css">
 <script type="text/javascript">         

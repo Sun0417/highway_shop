@@ -45,28 +45,43 @@
 </header>
 <article class="paddingbtm">
   <div class="pd_publisher">
-    <div class="pdp_left"><a href="javascript:;"><small><img src="assets/shop/img/tx_img_02.png"></small><span>Woman</span></a></div>
+    <div class="pdp_left"><a href="javascript:;">
+        <small>
+          <?php if($produt_detail['shop']['avatar']): ?>
+              <img src="<?php echo $produt_detail['shop']['avatar'] ?>">
+            <?php else: ?>
+              <img src="assets/shop/img/avatar.jpg">
+          <?php endif; ?> 
+        </small>
+    <span><?php echo $produt_detail['shop']['name']; ?></span>
+    </a></div>
     <div class="pdp_right"><a href="javascript:;" class="iconfont icon-jia">关注</a></div><!--已关注的话 class="iconfont icon-jia"改成class="iconfont icon-jia qxgz"-->
   </div>
-  <div class="pd_bt" style="background:url(assets/shop/img/proimg_01.png) center 0 no-repeat">
-  <h3><span>美國自然牛USDAPRIME極佳級，厚切西冷牛排,全國配送，順風冷鏈</span></h3>
+  <div class="pd_bt" style="background:url(<?php echo $produt_detail['cover']; ?>) center 0 no-repeat">
+  <h3><span><?php echo $produt_detail['desc']; ?></span></h3>
   </div>
   <div class="pd_details">
     <p>冷鲜肉又称保鲜肉、排酸肉，是指严格执行兽医检疫制度，对屠宰后的畜胴体迅速进行冷却处理，使胴体温度在24小时内降为0-4℃，并进行高标准排酸，在后续的加工、流通和销售过程中始终保持0-4℃范围内的生鲜肉（需具备完善的冷链运输体系）。在发达国家的生鲜肉消费中，冷鲜肉已90%。</p>
   </div>
   <div class="pd_imgyun">
-    <a href="javascript:;"><img src="http://weixintest8888.tunnel.echomod.cn/highway_shop/frontend/web/assets/shop/img/proxq_img_03.png"></a>
-    <a href="javascript:;"><img src="http://weixintest8888.tunnel.echomod.cn/highway_shop/frontend/web/assets/shop/img/proxq_img_02.png"></a>
-    <a href="javascript:;"><img src="http://weixintest8888.tunnel.echomod.cn/highway_shop/frontend/web/assets/shop/img/proxq_img_03.png"></a>
-    <a href="javascript:;"><img src="http://weixintest8888.tunnel.echomod.cn/highway_shop/frontend/web/assets/shop/img/proxq_img_04.png"></a>
-    <a href="javascript:;"><img src="http://weixintest8888.tunnel.echomod.cn/highway_shop/frontend/web/assets/shop/img/proxq_img_05.png"></a>
-    <a href="javascript:;"><img src="http://weixintest8888.tunnel.echomod.cn/highway_shop/frontend/web/assets/shop/img/proxq_img_06.png"></a>
-    <a href="javascript:;"><img src="http://weixintest8888.tunnel.echomod.cn/highway_shop/frontend/web/assets/shop/img/proxq_img_07.png"></a>
-    <a href="javascript:;"><img src="http://weixintest8888.tunnel.echomod.cn/highway_shop/frontend/web/assets/shop/img/proxq_img_08.png"></a>
-    <a href="javascript:;"><img src="http://weixintest8888.tunnel.echomod.cn/highway_shop/frontend/web/assets/shop/img/proxq_img_09.png"></a>
+    <a href="javascript:;"><img src="assets/shop/img/proxq_img_03.png"></a>
+    <a href="javascript:;"><img src="assets/shop/img/proxq_img_02.png"></a>
+    <a href="javascript:;"><img src="assets/shop/img/proxq_img_03.png"></a>
+    <a href="javascript:;"><img src="assets/shop/img/proxq_img_04.png"></a>
+    <a href="javascript:;"><img src="assets/shop/img/proxq_img_05.png"></a>
+    <a href="javascript:;"><img src="assets/shop/img/proxq_img_06.png"></a>
+    <a href="javascript:;"><img src="assets/shop/img/proxq_img_07.png"></a>
+    <a href="javascript:;"><img src="assets/shop/img/proxq_img_08.png"></a>
+    <a href="javascript:;"><img src="assets/shop/img/proxq_img_09.png"></a>
   </div>
   <div class="pd_purchase">
-   <div class="pdmai_left"><p><strong>￥99.0</strong></p><p>快递：￥10.0</p></div>
+   <div class="pdmai_left"><p>
+   <strong>
+   <?php if($produt_detail['price']['min']||$produt_detail['price']['max']): ?>
+     ￥<?php echo $produt_detail['price']['min']; ?>
+   <?php endif; ?>  
+   </strong>
+   </p><p>快递：￥<?php echo $produt_detail['freight']; ?></p></div>
    <div class="pdmai_right"><a href="javascript:;" class="gmbtn add_text" data-id="1">加入购物车</a><a href="javascript:;" class="gmbtn add_text_buy" data-id='2'>立即购买</a></div>
   </div>
   <div class="pd_fabulous">
@@ -111,7 +126,7 @@
          <div class="pdc_people"><small><a href="javascript:;"><img src="assets/shop/img/tx_img_01.png"></a></small><span>天佑佑天</span><i>1月13日 18:21</i></div>
          <div class="pdc_content ">
          <p class="hfbtn">店家发货及物流都超快，很赞！牛排也很不错，厚切的口感很好！日期都很新，很愉快的一次购物。</p>
-         <p><a href="javascript:;" onclick="previewImage(this)" data-val='<?php echo $val ?>' style="background:url(<?php echo $val ?>) center 0 no-repeat; background-size:auto 100%"></a></p>
+         <p><a href="javascript:;" onclick="previewImage(this)"  style="  center 0 no-repeat; background-size:auto 100%"></a></p>
          </div>
        </li>
     </ul>
@@ -141,66 +156,20 @@
      <div class="pdpmb_gb"> <a href="javascript:;" class="pb_gbbtn">关闭</a></div>
      <ul>
      <form name="form1" method="post" action="">
-       <li>
-         <div class="pdpmb_spec">
-           <h3>100g美国牛排九折美国牛排九折美国牛排九折美国牛排九折 (两行测试)</h3>
-           <p><span>￥90.0</span>库存：15</p>
-         </div>
-         <div class="pdpmb_radio">
-            <input type="radio" value='1' name="RadioGroup3" value="单选" id="radio-3-1" class="radiocs">
-            <label for="radio-3-1"></label>
-         </div>
-       </li>
-       <li>
-         <div class="pdpmb_spec">
-           <h3>200g美国牛排八五折</h3>
-           <p><span>￥170.0</span>库存：15</p>
-         </div>
-         <div class="pdpmb_radio">
-            <input type="radio" name="RadioGroup3" value="2" id="radio-3-2" class="radiocs">
-            <label for="radio-3-2"></label>
-         </div>
-       </li>
-       <li>
-         <div class="pdpmb_spec">
-           <h3>300g美国牛排八折</h3>
-           <p><span>￥240.0</span>库存：15</p>
-         </div>
-         <div class="pdpmb_radio">
-            <input type="radio" name="RadioGroup3" value="3" id="radio-3-3" class="radiocs">
-            <label for="radio-3-3"></label>
-         </div>
-       </li>
-       <li>
-         <div class="pdpmb_spec">
-           <h3>300g美国牛排八折</h3>
-           <p><span>￥240.0</span>库存：15</p>
-         </div>
-         <div class="pdpmb_radio">
-            <input type="radio" name="RadioGroup3" value="4" id="radio-3-4" class="radiocs">
-            <label for="radio-3-4"></label>
-         </div>
-       </li>
-       <li>
-         <div class="pdpmb_spec">
-           <h3>300g美国牛排八折</h3>
-           <p><span>￥240.0</span>库存：15</p>
-         </div>
-         <div class="pdpmb_radio">
-            <input type="radio" name="RadioGroup3" value="5" id="radio-3-5" class="radiocs">
-            <label for="radio-3-5"></label>
-         </div>
-       </li>
-       <li>
-         <div class="pdpmb_spec">
-           <h3>400g美国牛排七五折（无货测试）</h3>
-           <p><span>￥300.0</span>库存：0</p>
-         </div>
-         <div class="pdpmb_radio">
-            <input type="radio" name="RadioGroup3" value="" onClick="return false" id="radio-3-3" class="radiocs">
-            <label for="radio-3-3"></label>
-         </div>
-       </li>
+     <?php if(isset($produt_detail['skus'])): ?>
+        <?php foreach($produt_detail['skus'] as $key=>$v): ?>
+         <li>
+           <div class="pdpmb_spec">
+             <h3><?php echo $v['title']; ?></h3>
+             <p><span>￥<?php echo $v['price']; ?></span>库存：<?php echo $v['count']; ?></p>
+           </div>
+           <div class="pdpmb_radio">
+              <input type="radio" value='<?php echo $v['id']; ?>' name="RadioGroup3" value="单选" id="radio-3-<?php echo $key ?>" class="radiocs">
+              <label for="radio-3-<?php echo $key; ?>"></label>
+           </div>
+         </li>
+       <?php  endforeach;?>
+     <?php endif; ?>    
      </form>
      </ul>
      <div class="pdpmb_sl">
@@ -215,7 +184,7 @@
       <li class="blackbtn"><a href="<?php echo yii\helpers\Url::to(['site/index']); ?>" class="iconfont icon-shouye">首页</a></li>
       <li class="blackbtn"><a href="javascript:;" class="iconfont icon-kefu">客服</a></li>
       <li class="blackbtn"><a href="javascript:;" class="iconfont icon-yicang">收藏</a></li><!--已收藏的话icon-shoucang改成 icon-yicang-->
-<li class="blackbtn"><a href="<?php echo yii\helpers\Url::to(['cart/index']); ?>" class="iconfont icon-gouwuche">购物车<?php if($flag): ?><i></i><?php endif; ?></a></li>
+      <li class="blackbtn"><a href="<?php echo yii\helpers\Url::to(['cart/index']); ?>" class="iconfont icon-gouwuche">购物车</a></li>
       <li><a href="javascript:;" class="hfbtn">写评论</a></li>
     </ul>
 </footer>
@@ -223,13 +192,7 @@
 <script type="text/javascript" src="assets/shop/js/jimiAlert.js"></script>
 <script type="text/javascript" src="assets/shop/js/controller.js"></script>
 <script>
-  wx.config(<?php echo  json_encode(\Yii::$app->wechat->jsApiConfig([
-         'jsApiList' => [
-              'previewImage',
-              'chooseImage',
-              'uploadImage'
-           ]
-       ])) ?>);
+  
       function chooseImage(obj){
         // 选择张片
         wx.chooseImage({

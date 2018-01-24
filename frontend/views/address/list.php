@@ -143,7 +143,10 @@ $(document).ready(function(e) {
       </ul>
       <?php endforeach; ?>
      <?php else:?>
-      請求填寫地址
+     <div class="no_data">
+        <p><span class="iconfont icon-wushuju"></span></p>
+        <p>请填写收货地址</p>
+    </div>    
      <?php endif; ?>
   </form>
   </div>

@@ -4,6 +4,7 @@ namespace frontend\controllers;
 use frontend\controllers\BaseController;
 use frontend\models\product\Product;
 use frontend\models\order\Order;
+use frontend\models\address\Address;
 use Yii;    
 class OrderController extends BaseController
 {
@@ -18,6 +19,22 @@ class OrderController extends BaseController
         catch(\Exception $e){return Yii::$app->response->content="<script>alert('".$e->getMessage()."');history.go(-1);</script>";}
         //渲染
         return $this->render('index',['order_list'=>$order_list]);
+    }
+    //==========================
+    //订单确认
+    public function actionConfirmOrder()
+    {
+        $this->layout=false;
+         //獲取地址列表
+         try{$list=Address::get_address();}
+         catch(\Exception $e){return Yii::$app->response->content="<script>alert('".$e->getMessage()."');history.go(-1);</script>";}
+         try{$order_list=Order::get_order_detail();}
+         catch(\Exception $e){return Yii::$app->response->content="<script>alert('".$e->getMessage()."');history.go(-1);</script>";}
+        if(Yii::$app->request->isPost)
+        {
+            $post=Yii::$app->request->post();
+        }
+        return $this->render('confirm-order',['address_list'=>$list,'order_list'=>$order_list]);
     }
     //==========================
     //訂單購買

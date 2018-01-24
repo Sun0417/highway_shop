@@ -19,8 +19,8 @@
 </header>
 <article class="paddingbtm">
   <div class="shoppingcart">
-       <?php if(isset($cart_list['detail'])&&$cart_list['detail']): ?> 
-                <?php foreach($cart_list['detail'] as $vt): ?>
+       <?php if($cart_list['isEffective']&&isset($cart_list['childOrder'])): ?> 
+                <?php foreach($cart_list['childOrder'] as $vt): ?>
                 	<dl>
                       <form name="form1" method="post" action="">
                         <dt>
@@ -28,11 +28,12 @@
                           <input type="checkbox" name="CheckboxGroup1" value="复选框" id="checkbox-1-0" class="ckbox">
                           <label for="checkbox-1-0"></label>
                          </div> -->
-                         <div class="shop_headlines iconfont icon-dianpu"><a href="javascript:;"><?php echo $vt['shopName'];  ?></a></div>
+                         <div class="shop_headlines iconfont icon-dianpu"><a href="javascript:;"><?php echo $vt['title'];  ?></a></div>
                          <!-- <button type="button" class="ck_button">清空</button> -->
                         </dt>
+                        <?php if($vt['isEffective']): ?> 
                         <?php foreach($vt['salesUnits'] as $key=>$vt_sku): ?>
-                            <dd class="sccart_dd cart_<?php echo  $key; ?>_<?php echo $vt['shopId'];  ?>">
+                            <dd class="sccart_dd cart_<?php echo  $key; ?>_<?php echo $vt['index'];  ?>">
                               <div class="sc_rolllayer">
                                  <div class="scrol_lt">
                                   <!--<div class="sc_checkbox">
@@ -49,19 +50,29 @@
                                      <small rel="<?php echo $vt_sku['salesUnitNo']; ?>" class="iconfont icon-jia cartqtyup"></small></div>
                                    </div>
                                   </div>
-                                 <div rel="<?php echo $vt_sku['salesUnitNo']; ?>" class="scpro_delete btn-remove" data-val="<?php echo $vt['shopId'];  ?>" data-id="<?php echo  $key; ?>"></div>
+                                 <div rel="<?php echo $vt_sku['salesUnitNo']; ?>" class="scpro_delete btn-remove" data-val="<?php echo $vt['index'];  ?>" data-id="<?php echo  $key; ?>"></div>
                               </div>
                             </dd>
-                        <?php  endforeach;?>    
+                        <?php  endforeach;?>  
+                        <?php endif; ?>  
                        </form>
                   </dl>
                 <?php  endforeach;?>
         <?php else:?>
-           <div>购物车空空如也11</div>
+        <div class="no_data">
+            <p><span class="iconfont icon-wushuju"></span></p>
+            <p>购物车空空如也</p>
+         </div> 
         <?php endif; ?>
         <div class="pao_xf">
-           <div class="pao_jiage">總價：<strong>￥<?php echo $cart_list['totalPrice']; ?></strong><small>不含運費</small></div>
-           <div class="pao_btn"><button onclick="location.href='<?php echo \yii\helpers\Url::to(['order/index']); ?>'">下单吃肉</button></div>
+           <div class="pao_jiage">總價：<strong>￥<?php echo $cart_list['price']; ?></strong><small>不含運費</small></div>
+           <div class="pao_btn">
+            <?php if($cart_list['isEffective']&&isset($cart_list['childOrder'])): ?> 
+                <button readonly='true' onclick="location.href='<?php echo \yii\helpers\Url::to(['order/index']); ?>'">下单吃肉</button>
+                <?php else: ?>
+                <button readonly='true' onclick="location.href='<?php echo \yii\helpers\Url::to(['site/index']); ?>'">去逛逛</button>
+            <?php endif; ?>
+           </div>
        </div>
   </div>
 </article>
