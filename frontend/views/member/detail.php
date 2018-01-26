@@ -16,8 +16,8 @@
 </header>
 <article>
     <ul class="ac_ul">
-      <li><span>昵称：</span><small><a href="javascript:;" class="iconfont icon-more">鲜友_F54ASF</a></small></li>
-      <li><span>绑定手机：</span><small><a href="javascript:;" class="iconfont icon-more">19912131415</a></li>
+      <li><span>昵称：</span><small><a href="<?php echo yii\helpers\Url::to(['member/edit']); ?>" class="iconfont icon-more">鲜友_F54ASF</a></small></li>
+      <li><span>绑定手机：</span><small>19912131415</li>
     </ul>
 </article>
 <footer>

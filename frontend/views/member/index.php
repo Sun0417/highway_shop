@@ -24,7 +24,6 @@
    <li><a href="<?php echo yii\helpers\Url::to(['order/order-list']); ?>"><strong>34</strong><br />已完成</a></li>
   </ul>
   <ul class="mc_function">
-    <li class="iconfont icon-mjdt"><a href="javascript:;" class="iconfont icon-more">賣家動態</a></li>
     <li class="iconfont icon-wdgz"><a href="<?php echo yii\helpers\Url::to(['follow/index']); ?>" class="iconfont icon-more">我的關注</a></li>
     <li class="iconfont icon-wdsc"><a href="<?php echo yii\helpers\Url::to(['collection/product']); ?>" class="iconfont icon-more">我的收藏</a></li>
     <li class="iconfont icon-shdz"><a href="<?php echo \yii\helpers\Url::to(['address/list']); ?>" class="iconfont icon-more">收货地址</a></li>

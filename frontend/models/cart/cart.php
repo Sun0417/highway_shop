@@ -28,7 +28,7 @@ class Cart
         //请求接口
         $api_url=Yii::$app->params['api_url'];
         $url=Yii::$app->params['post_url']['add_cart_record'];
-        $query=array('salesUnitId'=>$salesUnitId,'salesUnitType'=>$salesUnitType,'count'=>$count,'token'=>$token);
+        $query=array('sourceId'=>$salesUnitId,'sourceType'=>$salesUnitType,'count'=>$count,'token'=>$token);
           //请求 返回结果
         $response_data=Curl::get($api_url.$url,array(),$query);
         //返回

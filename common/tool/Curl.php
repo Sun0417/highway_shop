@@ -18,7 +18,8 @@ class Curl extends HttpCurl
         if(isset($response_data['error'])&&$response_data['error']==0)
         {
             //返回
-            return $response_data['data'];
+            if(isset($response_data['data']))return  $response_data['data'];
+            else return  $response_data['error'];
         }
         //報錯
         if(isset($response_data['msg']))throw new \Exception($response_data['msg'],-1); else throw new \Exception("報錯信息缺失",-1);

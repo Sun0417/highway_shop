@@ -13,6 +13,14 @@
 <link href="assets/shop/css/loadSimple.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="assets/shop/js/wechat.js"></script>
 <script>
+   function changeFrameHeight(){
+                    var ifm= document.getElementById("myiframe"); 
+                    ifm.height=document.documentElement.clientHeight;
+                }
+                window.onresize=function(){  
+                    changeFrameHeight();  
+    
+    } 
     $(function(){
 	  var h=$('.pdpm_reply,.pdpm_buy').outerHeight();
 	  var w=$('.pdpm_reply,.pdpm_buy').outerWidth();
@@ -55,25 +63,31 @@
         </small>
     <span><?php echo $produt_detail['shop']['name']; ?></span>
     </a></div>
-    <div class="pdp_right"><a href="javascript:;" class="iconfont icon-jia">关注</a></div><!--已关注的话 class="iconfont icon-jia"改成class="iconfont icon-jia qxgz"-->
+
+    <div class="pdp_right">
+           <a href="javascript:;" class="iconfont follow" 
+           data-id="<?php if(isset($produt_detail['shop']['followId'])&&!is_null($produt_detail['shop']['followId'])): ?><?php echo $produt_detail['shop']['followId']; ?>
+                  <?php else: ?><?php echo $produt_detail['shop']['sourceId']?>,<?php echo $produt_detail['shop']['sourceType']?>
+                  <?php endif; ?>"
+           data-val="<?php if(isset($produt_detail['shop']['followId'])&&!is_null($produt_detail['shop']['followId'])): ?>1
+                          <?php else: ?>2<?php endif; ?>"
+           >
+           <?php if(isset($produt_detail['shop']['followId'])&&!is_null($produt_detail['shop']['followId'])): ?>
+           已关注
+           <?php else: ?>
+           关注
+           <?php endif; ?>
+          </a>
+    </div><!--已关注的话 class="iconfont icon-jia"改成class="iconfont icon-jia qxgz"-->
   </div>
   <div class="pd_bt" style="background:url(<?php echo $produt_detail['cover']; ?>) center 0 no-repeat">
   <h3><span><?php echo $produt_detail['desc']; ?></span></h3>
   </div>
-  <div class="pd_details">
-    <p>冷鲜肉又称保鲜肉、排酸肉，是指严格执行兽医检疫制度，对屠宰后的畜胴体迅速进行冷却处理，使胴体温度在24小时内降为0-4℃，并进行高标准排酸，在后续的加工、流通和销售过程中始终保持0-4℃范围内的生鲜肉（需具备完善的冷链运输体系）。在发达国家的生鲜肉消费中，冷鲜肉已90%。</p>
-  </div>
-  <div class="pd_imgyun">
-    <a href="javascript:;"><img src="assets/shop/img/proxq_img_03.png"></a>
-    <a href="javascript:;"><img src="assets/shop/img/proxq_img_02.png"></a>
-    <a href="javascript:;"><img src="assets/shop/img/proxq_img_03.png"></a>
-    <a href="javascript:;"><img src="assets/shop/img/proxq_img_04.png"></a>
-    <a href="javascript:;"><img src="assets/shop/img/proxq_img_05.png"></a>
-    <a href="javascript:;"><img src="assets/shop/img/proxq_img_06.png"></a>
-    <a href="javascript:;"><img src="assets/shop/img/proxq_img_07.png"></a>
-    <a href="javascript:;"><img src="assets/shop/img/proxq_img_08.png"></a>
-    <a href="javascript:;"><img src="assets/shop/img/proxq_img_09.png"></a>
-  </div>
+  <?php if(isset($produt_detail['detail'])&&!is_null($produt_detail['detail'])): ?>
+      <?php echo $produt_detail['detail']; ?>
+  <?php elseif(isset($produt_detail['uri'])&&!is_null($produt_detail['uri'])): ?>   
+            <iframe style='width:100%' src="https://www.baidu.com" id="myiframe" scrolling="no" onload="changeFrameHeight()" frameborder="0"></iframe>
+  <?php endif; ?>
   <div class="pd_purchase">
    <div class="pdmai_left"><p>
    <strong>
@@ -87,28 +101,20 @@
   <div class="pd_fabulous">
     <div class="pdf_top"><span>32个人觉得很牛逼</span></div>
     <dl class="pdf_btm">
-      <dd><a href="javascript:;" class="iconfont icon-dianzan"></a></dd><!--已点赞的话icon-dianzan改成 icon-yizan-->
+        <dd><a href="javascript:;" 
+          data-id="<?php if(isset($produt_detail['upvoteId'])&&!is_null($produt_detail['upvoteId'])): ?><?php echo $produt_detail['upvoteId']; ?>
+                    <?php else: ?><?php echo $produt_detail['sourceId']?>,<?php echo $produt_detail['sourceType']?>
+                    <?php endif; ?>"
+          data-val="<?php if(isset($produt_detail['upvoteId'])&&!is_null($produt_detail['upvoteId'])): ?>1
+                            <?php else: ?>2<?php endif; ?>"
+        class="iconfont <?php if(isset($produt_detail['upvoteId'])&&!is_null($produt_detail['upvoteId'])): ?>icon-yizan 
+                          <?php else: ?>icon-dianzan<?php endif; ?> dianzhan"></a></dd><!--已点赞的话icon-dianzan改成 icon-dianzan icon-yizan-->
       <dd><a href="javascript:;"><img src="assets/shop/img/tx_img_01.png"></a></dd>
-      <dd><a href="javascript:;"><img src="assets/shop/img/tx_img_02.png"></a></dd>
-      <dd><a href="javascript:;"><img src="assets/shop/img/tx_img_03.png"></a></dd>
-      <dd><a href="javascript:;"><img src="assets/shop/img/tx_img_04.png"></a></dd>
-      <dd><a href="javascript:;"><img src="assets/shop/img/tx_img_05.png"></a></dd>
-      <dd><a href="javascript:;"><img src="assets/shop/img/tx_img_01.png"></a></dd>
-      <dd><a href="javascript:;"><img src="assets/shop/img/tx_img_02.png"></a></dd>
-      <dd><a href="javascript:;"><img src="assets/shop/img/tx_img_01.png"></a></dd>
-      <dd><a href="javascript:;"><img src="assets/shop/img/tx_img_03.png"></a></dd>
-      <dd><a href="javascript:;"><img src="assets/shop/img/tx_img_04.png"></a></dd>
-      <dd><a href="javascript:;"><img src="assets/shop/img/tx_img_05.png"></a></dd>
-      <dd><a href="javascript:;"><img src="assets/shop/img/tx_img_01.png"></a></dd>
-      <dd><a href="javascript:;"><img src="assets/shop/img/tx_img_02.png"></a></dd>
-      <dd><a href="javascript:;"><img src="assets/shop/img/tx_img_03.png"></a></dd>
-      <dd><a href="javascript:;"><img src="assets/shop/img/tx_img_01.png"></a></dd>
-      <dd><a href="javascript:;"><img src="assets/shop/img/tx_img_02.png"></a></dd>
       <dt class="pdf_more"><a href="javascript:;" class=" iconfont icon-gengduo"></a></dt>
     </dl>
   </div>
   <div class="pd_comment">
-    <div class="pdc_top">评论(71)</div>
+    <!-- <div class="pdc_top">评论(71)</div> -->
     <ul class="pdc_btm">
        <li>
          <div class="pdc_people"><small><a href="javascript:;"><img src="assets/shop/img/tx_img_04.png"></a></small><span>看不清的脸庞丶</span><i>1月13日 18:21</i></div>
@@ -137,10 +143,8 @@
     <div class="pdpm_reply_t"><textarea name="" cols="" rows=""  placeholder="随便说点什么"></textarea></div>
     <div class="pdpm_reply_b">
         <div class="pr_imgxz">
-        
         <!--选择图片-->
         <a href="javascript:;" onclick="chooseImage(this)" class="imgxzq iconfont icon-xzimg"></a>
-        
         <!--已选择图片-->
          <span class='img' style="display:none">
           <i><img class='img_url' style="width:100%"/></i>
@@ -183,9 +187,18 @@
     <ul class="ab_rightbtn">
       <li class="blackbtn"><a href="<?php echo yii\helpers\Url::to(['site/index']); ?>" class="iconfont icon-shouye">首页</a></li>
       <li class="blackbtn"><a href="javascript:;" class="iconfont icon-kefu">客服</a></li>
-      <li class="blackbtn"><a href="javascript:;" class="iconfont icon-yicang">收藏</a></li><!--已收藏的话icon-shoucang改成 icon-yicang-->
+      <li class="blackbtn">
+        <a href="javascript:;" 
+          data-id="<?php if(isset($produt_detail['collectionId'])&&!is_null($produt_detail['collectionId'])): ?><?php echo $produt_detail['collectionId']; ?>
+                    <?php else: ?><?php echo $produt_detail['sourceId']?>,<?php echo $produt_detail['sourceType']?>
+                    <?php endif; ?>"
+          data-val="<?php if(isset($produt_detail['collectionId'])&&!is_null($produt_detail['collectionId'])): ?>1
+                            <?php else: ?>2<?php endif; ?>"
+        class="iconfont <?php if(isset($produt_detail['collectionId'])&&!is_null($produt_detail['collectionId'])): ?>icon-yicang 
+                          <?php else: ?> icon-shoucang<?php endif; ?> shoucang">收藏</a>
+      </li><!--已收藏的话icon-shoucang改成 icon-yicang-->
       <li class="blackbtn"><a href="<?php echo yii\helpers\Url::to(['cart/index']); ?>" class="iconfont icon-gouwuche">购物车</a></li>
-      <li><a href="javascript:;" class="hfbtn">写评论</a></li>
+      <li><a href="javascript:;" class="hfbtn">写评论</a></li> -->
     </ul>
 </footer>
 <script src="assets/shop/js/jquery-2.1.1.js"></script>
@@ -238,10 +251,108 @@
     });
   }
 //设置文字
+//=============================================
+//点赞  收藏  關注
 $(function (){ 
     var aa = $(".pdf_btm > dd,.pdf_btm > dt").innerWidth(); 
     $(".pdf_btm > dd,.pdf_btm > dt").css('height',aa); 
+    //点赞
+    $(".dianzhan").click(function(){
+      var sourceId=$(this).attr('data-id');
+      var type=$(this).attr('data-val');
+      var that=$(this);
+      loaderHelper.show({'text':"加载中...."});
+          $.ajax({
+                    type: 'GET',
+                    url:"<?php echo \yii\helpers\Url::to(['product/liked']); ?>",
+                    data:{sourceId:sourceId,type:type},
+                    success: function(data){
+                        loaderHelper.hide();
+                        if(typeof data=='string')data=JSON.parse(data);
+                        if(data.error!=0){alert(data.message);return false;}
+                        alert(data.message);
+                        if(type==1){
+                          that.attr('data-id',<?php echo $produt_detail['sourceId']?>+','+<?php echo $produt_detail['sourceType']?>);that.attr('data-val',2);
+                          that.addClass('icon-dianzan');
+                          that.removeClass('icon-yizan');
+                        }else{
+                          that.attr('data-id',data.LikedId);that.attr('data-val',1);
+                          that.removeClass('icon-dianzan');
+                          that.addClass('icon-yizan');
+                        }
+                    },
+                    error:function(res){
+                        loaderHelper.hide();
+                        alert("網絡異常,請重試!");
+                        return false;
+                  }
+              })
+    })
+    //收藏
+    $(".shoucang").click(function(){
+      var sourceId=$(this).attr('data-id');
+      var type=$(this).attr('data-val');
+      var that=$(this);
+      loaderHelper.show({'text':"加载中...."});
+          $.ajax({
+                  type: 'GET',
+                  url:"<?php echo \yii\helpers\Url::to(['product/recommend']); ?>",
+                  data:{sourceId:sourceId,type:type},
+                  success: function(data){
+                      loaderHelper.hide();
+                      if(typeof data=='string')data=JSON.parse(data);
+                      if(data.error!=0){alert(data.message);return false;}
+                      alert(data.message);
+                      if(type==1){
+                        that.attr('data-id',<?php echo $produt_detail['sourceId']?>+','+<?php echo $produt_detail['sourceType']?>);that.attr('data-val',2);
+                        that.addClass('icon-shoucang');
+                        that.removeClass('icon-yicang');
+                      }else{
+                        that.attr('data-id',data.recommendId);that.attr('data-val',1);
+                        that.removeClass('icon-shoucang');
+                        that.addClass('icon-yicang');
+                      }
+                  },
+                  error:function(res){
+                      loaderHelper.hide();
+                      alert("網絡異常,請重試!");
+                      return false;
+                }
+              })
+    })
+    //關注
+    $('.follow').click(function(){
+      var sourceId=$(this).attr('data-id');
+      var type=$(this).attr('data-val');
+      var that=$(this);
+      loaderHelper.show({'text':"加载中...."});
+      $.ajax({
+                type: 'GET',
+                url:"<?php echo \yii\helpers\Url::to(['shop/fllow']); ?>",
+                data:{sourceId:sourceId,type:type},
+                success: function(data){
+                    loaderHelper.hide();
+                    if(typeof data=='string')data=JSON.parse(data);
+                    if(data.error!=0){alert(data.message);return false;}
+                    alert(data.message);
+                    if(type==1){
+                      that.attr('data-id',<?php echo $produt_detail['shop']['sourceId']?>+','+<?php echo $produt_detail['shop']['sourceType']?>);that.attr('data-val',2);
+                      that.html('关注');
+                    }else{
+                      that.attr('data-id',data.fllowId);that.attr('data-val',1);
+                      that.html('已关注');
+                    }
+                },
+                error:function(res){
+                    loaderHelper.hide();
+                    alert("網絡異常,請重試!");
+                    return false;
+              }
+          })
+    })
 }) 
+//============================================
+//购物车模板
 $(document).ready(function(e) {
   //獲取radi選擇的值
   function get_radio_check()
@@ -317,23 +428,11 @@ $(document).ready(function(e) {
        
    })
   var le=$('.pdf_btm dd').length;
-	if(le<=15)
-	{
-	  $('.pdf_more').css('display','none');
-	}
-}); 
-$(".pdf_more").toggle(
-    function()
-	 {
-	    $(".pdf_btm > dd:gt(14)").css('display','inline-block');
-	    $(".icon-gengduo").addClass('icon-shouqi').removeClass('icon-gengduo');
-	 },
-    function()
-	{
-		$(".pdf_btm > dd:gt(14)").css('display','none');
-		$(".icon-shouqi").addClass('icon-gengduo').removeClass('icon-shouqi');
-    }  
-);
+	if(le<=15){ $('.pdf_more').css('display','none');}}); 
+  $(".pdf_more").toggle(
+      function(){$(".pdf_btm > dd:gt(14)").css('display','inline-block');$(".icon-gengduo").addClass('icon-shouqi').removeClass('icon-gengduo');},
+      function(){$(".pdf_btm > dd:gt(14)").css('display','none');$(".icon-shouqi").addClass('icon-gengduo').removeClass('icon-shouqi');}  
+  );
 </script> 
 </body>
 </html>

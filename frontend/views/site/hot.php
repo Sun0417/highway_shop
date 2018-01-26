@@ -1,37 +1,40 @@
 <header>
   <ul class="top_tab">
-    <li ><a href="<?php echo \yii\helpers\Url::to(['site/index','recommendType'=>2]); ?>">推薦</a></li>
-    <li class="ttab_dq"><a href="<?php echo \yii\helpers\Url::to(['site/hot','recommendType'=>3]); ?>">熱門</a></li>
+    <li ><a href="<?php echo \yii\helpers\Url::to(['site/index','recommendType'=>Yii::$app->params['category']['recommend']]); ?>">推薦</a></li>
+    <li class="ttab_dq"><a href="<?php echo \yii\helpers\Url::to(['site/hot','recommendType'=>Yii::$app->params['category']['hot']]); ?>">熱門</a></li>
     <li><a href="javascript:;" class="ss_btn">搜索</a></li>
   </ul>
 </header>
-
 <article class="paddingbtm">
    <!-- 产品 -->
   <ul class="sypro_lb">
     <?php if(isset($recommend_list)): ?>
       <?php foreach($recommend_list as $v): ?>
       <li>
-         <div class="splb_top"><a href="<?php echo \yii\helpers\Url::to(['product/detail','spuId'=>$v['recommendedUnitType']]); ?>">
+         <div class="splb_top"><a href="<?php echo \yii\helpers\Url::to(['product/detail','spuId'=>$v['sourceId']]); ?>">
           <p><img src=<?php echo $v['cover'] ?>></p>
           <p><?php echo $v['title'] ?></p>
         </a></div>
         <div class="splb_btm">
-         <a href="javascript:;" class="splb_yh">
-             <small>
-             <?php if($v['shop']['avatar']): ?>
-                 <img src="<?php echo $v['shop']['avatar'] ?>">
-              <?php else:?>
-                 <img src="assets/shop/img/avatar.jpg">
-              <?php endif; ?>
-             </small>
-         <span><?php echo $v['shop']['name'] ?></span></a>
+        <?php if(isset($v['shop'])): ?>
+            <a href="javascript:;" class="splb_yh">
+                <small>
+                      <?php if($v['shop']['avatar']): ?>
+                        <img src="<?php echo $v['shop']['avatar'] ?>">
+                      <?php else:?>
+                        <img src="assets/shop/img/avatar.jpg">
+                      <?php endif; ?>
+                </small>
+            <span><?php echo $v['shop']['name'] ?></span></a>
+         <?php endif; ?>  
          <a href="javascript:;" class="splb_bq">
-         <?php $tags=''; ?>
-         <?php foreach($v['tags'] as $t): ?>
-              <?php $tags.='#'.$t['tag'];?>
-         <?php endforeach; ?> 
-         <?php echo $tags; ?>
+          <?php if(isset($v['tags'])): ?>
+                <?php $tags=''; ?>
+                <?php foreach($v['tags'] as $t): ?>
+                      <?php $tags.='#'.$t['tag'];?>
+                <?php endforeach; ?> 
+                <?php echo $tags; ?>
+          <?php endif; ?>     
          </a>
         </div>
       </li>
@@ -61,26 +64,4 @@ $(function(){
     $('.ss_search').animate({top:'-30%','opacity':0},240,'swing',function(){$('.ss_search').hide()});
     })
 })
-console=window.console || {dir:new Function(),log:new Function()};
-var active=0,
-  as=document.getElementById('pagenavi').getElementsByTagName('a');
-for(var i=0;i<as.length;i++){
-  (function(){
-    var j=i;
-    as[i].onclick=function(){
-      t4.slide(j);
-      return false;
-    }
-  })();
-}
-var t4=new TouchSlider('slider4',{speed:1000, direction:0, interval:6000, fullsize:true});
-t4.on('before',function(m,n){
-    as[m].className='';
-  as[n].className='active';
-})
-
-var control = navigator.control || {};
-    if (control.gesture) {
-        control.gesture(false);
-    }
 </script>

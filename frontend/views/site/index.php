@@ -1,7 +1,8 @@
+<script type="text/javascript" src="assets/shop/js/touchslide.1.1.js"></script>
 <header>
   <ul class="top_tab">
     <li class="ttab_dq"><a href="javascript:;">推薦</a></li>
-    <li><a href="<?php echo \yii\helpers\Url::to(['site/hot','recommendType'=>3]); ?>">熱門</a></li>
+    <li><a href="<?php echo \yii\helpers\Url::to(['site/hot','recommendType'=>Yii::$app->params['category']['hot']]); ?>">熱門</a></li>
     <li><a href="javascript:;" class="ss_btn">搜索</a></li>
   </ul>
 </header>
@@ -15,7 +16,7 @@
         <div class="swipe">
           <ul>
               <?php foreach($banner_list as $v): ?>
-                 <li><a href="<?php echo \yii\helpers\Url::to(['product/detail','spuId'=>$v['recommendedUnitType']]); ?>"><img src="<?php echo $v['cover'] ?>"></a></li>
+                 <li><a href="<?php echo \yii\helpers\Url::to(['product/detail','spuId'=>$v['sourceId']]); ?>"><img src="<?php echo $v['cover'] ?>"></a></li>
              <?php endforeach; ?>
           </ul>
         </div>
@@ -36,8 +37,8 @@
   <ul class="syclassify">
     <?php foreach($category_list as $v):?>
     <li>
-      <a href="javascript:;">
-        <p><img src="assets/shop/img/syfl_01.png"></p>
+      <a href="<?php echo \yii\helpers\Url::to(['product/category']); ?>">
+        <p><img src="<?php echo $v['icon'] ?>"></p>
         <p><?php echo $v['name'] ?></p>
       </a>
     </li>
@@ -49,7 +50,7 @@
     <?php if(isset($recommend_list)): ?>
       <?php foreach($recommend_list as $v): ?>
       <li>
-         <div class="splb_top"><a href="<?php echo \yii\helpers\Url::to(['product/detail','spuId'=>$v['recommendedUnitType']]); ?>">
+         <div class="splb_top"><a href="<?php echo \yii\helpers\Url::to(['product/detail','spuId'=>$v['sourceId']]); ?>">
           <p><img src=<?php echo $v['cover'] ?>></p>
           <p><?php echo $v['title'] ?></p>
         </a></div>
@@ -98,26 +99,4 @@ $(function(){
 		$('.ss_search').animate({top:'-30%','opacity':0},240,'swing',function(){$('.ss_search').hide()});
 	  })
 })
-console=window.console || {dir:new Function(),log:new Function()};
-var active=0,
-	as=document.getElementById('pagenavi').getElementsByTagName('a');
-for(var i=0;i<as.length;i++){
-	(function(){
-		var j=i;
-		as[i].onclick=function(){
-			t4.slide(j);
-			return false;
-		}
-	})();
-}
-var t4=new TouchSlider('slider4',{speed:1000, direction:0, interval:6000, fullsize:true});
-t4.on('before',function(m,n){
-    as[m].className='';
-	as[n].className='active';
-})
-
-var control = navigator.control || {};
-    if (control.gesture) {
-        control.gesture(false);
-    }
 </script>

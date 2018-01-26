@@ -21,9 +21,10 @@ class CartController extends BaseController
         //title
         $view->params['text']=Yii::$app->params['active']['cart'];
         //获取购物车列表 
+        $cart_list=array();
          //獲取省級
         try{$cart_list=Cart::get_cart_list();}
-        catch(\Exception $e){return Yii::$app->response->content="<script>alert('".$e->getMessage()."');history.go(-1);</script>";}
+        catch(\Exception $e){}
         //渲染
         return $this->render('index',['cart_list'=>$cart_list]);
     }
@@ -38,7 +39,7 @@ class CartController extends BaseController
             //商品ID
             $count=Yii::$app->request->post('count',false);if(!$count)throw new \Exception('miss count',-1);
             //銷售單元
-            $salesUnitType=1;
+            $salesUnitType=2;
             //令牌
             if(!isset(Yii::$app->session['member']['token']))throw new \Exception('miss token',-1);
             $token=Yii::$app->session['member']['token'];

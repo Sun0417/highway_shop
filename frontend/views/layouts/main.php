@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html>
 <head>
@@ -13,7 +14,6 @@
 <link rel="stylesheet" type="text/css" href="assets/shop/css/loadSimple.css">
 <script src="assets/shop/js/jquery-2.1.1.js"></script>
 <script type="text/javascript" src="assets/shop/js/response.js"></script>
-<script type="text/javascript" src="assets/shop/js/touchslide.1.1.js"></script>
 </head>
 <link rel="stylesheet" type="text/css" href="assets/shop/css/loader.min.css">
 <script type="text/javascript">         
@@ -43,8 +43,14 @@
   <ul class="menu_ul">
     <li class="<?php echo isset($this->params['index'])?$this->params['index']:''; ?>"><a href="<?php echo \yii\helpers\Url::to(['site/index']); ?>" class="iconfont icon-shouye">首頁</a></li>
     <li class="<?php echo isset($this->params['culture'])?$this->params['culture']:''; ?>"><a href="<?php echo \yii\helpers\Url::to(['culture/index']); ?>" class="iconfont icon-wenhua">文化</a></li>
-    <li class="<?php echo isset($this->params['cart'])?$this->params['cart']:''; ?>"><a href="<?php echo \yii\helpers\Url::to(['cart/index']); ?>" class="iconfont icon-gouwuche">購物車</a></li>
-    <li class="<?php echo isset($this->params['message'])?$this->params['message']:''; ?>"><a href="<?php echo \yii\helpers\Url::to(['message/index']); ?>" class="iconfont icon-xiaoxi">消息<i></i></a></li>
+    <li class="<?php echo isset($this->params['cart'])?$this->params['cart']:''; ?>">
+     
+    <a href="<?php echo \yii\helpers\Url::to(['cart/index']); ?>" class="iconfont icon-gouwuche">
+    購物車
+    <?php if(isset(Yii::$app->session['member']['is_cart'])&&Yii::$app->session['member']['is_cart']): ?><i></i><?php endif; ?>
+    </a>
+    </li>
+    <!-- <li class="<?php echo isset($this->params['message'])?$this->params['message']:''; ?>"><a href="<?php echo \yii\helpers\Url::to(['message/index']); ?>" class="iconfont icon-xiaoxi">消息<i></i></a></li> -->
     <li class="<?php echo isset($this->params['member'])?$this->params['member']:''; ?>"><a href="<?php echo \yii\helpers\Url::to(['member/index']); ?>" class="iconfont icon-wode">我的</a></li>
   </ul>
 </footer>

@@ -12,15 +12,17 @@ return [
                     'address_list'=>'address/api-get-address-list',
                     'address_add'=>'address/api-add-address',
                     'cart_list'=>'shopping-cart/api-get-shopping-cart',
-                    'product_detail'=>'product/api-get-product-detail',
+                    'product_detail'=>'product/api-get-spu-detail',
                     'add_cart_record'=>'shopping-cart/api-add-sales-unit',
                     'edit_cart_record'=>'shopping-cart/api-update-record',//修改购物车中某个记录的数量
                     'del_cart_record'=>'shopping-cart/api-del-record',
                     'buying_detail'=>'buying/api-apply-create-order-by-shopping-cart',//訂單詳情頁面
                     'commit_order'=>'buying/api-create-order-by-shopping-cart',//訂單提交
                     'banner_list'=>'recommend/api-get-banner',//首页幻灯片
-                    'category_list'=>'category/api-get-categories',//首页分类
+                    'category_list'=>'category/api-get-top-categories',//首页顶级分类
                     'recommend_list'=>'recommend/api-get-recommend-product-unit',//推荐热门
+                    'mark'=>'mark/api-mark',
+                    'cancle-mark'=>'mark/api-cancle-mark',
                     'callback_url'=>'http://app1.zhengshan.store/smartShop/backend/web/index.php'
 			    ],
     'check_token_action'=>['reg/index','reg/send-code','reg/check-code'],
@@ -32,5 +34,6 @@ return [
                 'cart'=>'購物車',
                 'product'=>'商品',
                 'category'=>'分類',
-    ]
+    ],
+    'category'=>['recommend'=>1,'hot'=>2],
 ];

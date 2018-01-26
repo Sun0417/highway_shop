@@ -4,13 +4,13 @@
 <meta charset='utf-8' />
 <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
 <meta name="format-detection" content="telephone=no"/>
-<title>正善商城-日食</title>
+<title>分类列表</title>
 <link href="assets/shop/css/global.css" rel="stylesheet" type="text/css">
 <link href="assets/shop/css/font.css" rel="stylesheet" type="text/css">
 <link href="assets/shop/css/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="assets/shop/js/jquery.min.js"></script>
 <script type="text/javascript" src="assets/shop/js/response.js"></script>
-<script type="text/javascript" src="assets/shop/js/touchslider.js"></script>
+<script type="text/javascript" src="assets/shop/js/touchslide.1.1.js"></script>
 <script type="text/javascript" src="assets/shop/js/tab.js"></script>
 </head>
 <body>
@@ -18,19 +18,30 @@
 </header>
 <article>
   <div class="sybanner pcbanner">
-     <div class="swipe">
-     <ul id="slider4" style="position: relative; transition: none; width: 7612px; left: -3806px;">
-      <li><a href="javascript:;"><img src="assets/shop/img/lbbanner_img_01.png"></a></li>
-      <li><a href="javascript:;"><img src="assets/shop/img/lbbanner_img_01.png"></a></li>
-     </ul>
-    </div>
-    <div id="pagenavi">
-	  <a href="javascript:;" class="active">1</a>
-	  <a href="javascript:;" class="">2</a>
-    </div>
+    <div id="slider" class="sybanner pcbanner">
+				<div class="pagenavi">
+					<ul></ul>
+				</div>
+				<div class="swipe">
+					<ul>
+							<li><a href="javascript:;"><img src="assets/shop/img/lbbanner_img_01.png"></a></li>
+							<li><a href="javascript:;"><img src="assets/shop/img/lbbanner_img_01.png"></a></li>
+					</ul>
+				</div>
+			</div>
+    <script type="text/javascript">
+				TouchSlide({ 
+					slideCell:"#slider",
+					titCell:".pagenavi ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+					mainCell:".swipe ul", 
+					effect:"left", 
+					autoPlay:true,//自动播放
+					autoPage:true, //自动分页
+					switchLoad:"_src" //切换加载，真实图片路径为"_src" 
+				});
+    </script>
     <div class="pc_btwz">日食：壹日三餐主菜精選食材專場</div>
   </div>
-  
   <div class="clist_tab">
    <div class="clist_tab_bt find_nav">
     <div class="ctabbt_left find_nav_left">
@@ -50,37 +61,37 @@
         <div id="con_clisttab_1">
           <ul>
             <li>
-             <a href="<?php echo \yii\helpers\Url::to(['product/detail','spuId'=>1]); ?>">
+             <a href="javascript:;">
                <p><small style="background:url(assets/shop/img/proimg_02.png) center 0 no-repeat;"></small></p>
                <h3>美國自然牛USDAPRIME極佳級，厚切西冷牛配送...</h3>
              </a>
             </li>
             <li>
-             <a href="<?php echo \yii\helpers\Url::to(['product/detail','spuId'=>2]); ?>">
+             <a href="javascript:;">
                <p><small style="background:url(assets/shop/img/proimg_03.png) center 0 no-repeat;"></small></p>
                <h3>首長貝柱1盒(2斤 /盒)，原料出口日本歐美等國...</h3>
              </a>
             </li>
             <li>
-             <a href="<?php echo \yii\helpers\Url::to(['product/detail','spuId'=>3]); ?>">
+             <a href="javascript:;">
                <p><small style="background:url(assets/shop/img/proimg_01.png) center 0 no-repeat;"></small></p>
                <h3>首長貝柱1盒(2斤 /盒)，原料出口日本歐美等國...</h3>
              </a>
             </li>
             <li>
-             <a href="<?php echo \yii\helpers\Url::to(['product/detail','spuId'=>4]); ?>">
+             <a href="javascript:;">
                <p><small style="background:url(assets/shop/img/proimg_02.png) center 0 no-repeat;"></small></p>
                <h3>首長貝柱1盒(2斤 /盒)，原料出口日本歐美等國...</h3>
              </a>
             </li>
             <li>
-             <a href="<?php echo \yii\helpers\Url::to(['product/detail','spuId'=>5]); ?>">
+             <a href="javascript:;">
                <p><small style="background:url(assets/shop/img/proimg_03.png) center 0 no-repeat;"></small></p>
                <h3>首長貝柱1盒(2斤 /盒)，原料出口日本歐美等國...</h3>
              </a>
             </li>
             <li>
-             <a href="<?php echo \yii\helpers\Url::to(['product/detail','spuId'=>6]); ?>">
+             <a href="javascript:;">
                <p><small style="background:url(assets/shop/img/proimg_01.png) center 0 no-repeat;"></small></p>
                <h3>美國自然牛USDAPRIME極佳級，厚排,全國配送...</h3>
              </a>
@@ -130,85 +141,59 @@
       </div> 
    </div>
 </article>
-
 <footer>
-  
 </footer>
 <script type="text/javascript">
-console=window.console || {dir:new Function(),log:new Function()};
-var active=0,
-	as=document.getElementById('pagenavi').getElementsByTagName('a');
-for(var i=0;i<as.length;i++){
-	(function(){
-		var j=i;
-		as[i].onclick=function(){
-			t4.slide(j);
-			return false;
-		}
-	})();
-}
-var t4=new TouchSlider('slider4',{speed:1000, direction:0, interval:6000, fullsize:true});
-t4.on('before',function(m,n){
-    as[m].className='';
-	as[n].className='active';
-})
-
-var control = navigator.control || {};
-    if (control.gesture) {
-        control.gesture(false);
+  $(".ctabbt_list").css("left",0);
+  $(".ctabbt_list li").each(function(){
+  $(".ctabbt_list li").eq(0).addClass("find_nav_cur").siblings().removeClass("find_nav_cur");
+  });
+  var nav_w=$(".ctabbt_list li").first().width();
+  $(".sideline").width(nav_w);
+  $(".ctabbt_list li").on('click', function(){
+    nav_w=$(this).width();
+    $(".sideline").stop(true);
+    $(".sideline").animate({left:$(this).position().left},300);
+    $(".sideline").animate({width:nav_w});
+    $(this).addClass("find_nav_cur").siblings().removeClass("find_nav_cur");
+    var fn_w = ($(".clist_tab_bt").width() - nav_w) / 2;
+    var fnl_l;
+    var fnl_x = parseInt($(this).position().left);
+    if (fnl_x <= fn_w) {
+      fnl_l = 0;
+    } else if (fn_w - fnl_x <= flb_w - fl_w) {
+      fnl_l = flb_w - fl_w;
+    } else {
+      fnl_l = fn_w - fnl_x;
     }
-</script>
-<script type="text/javascript">
-$(".ctabbt_list").css("left",0);
-$(".ctabbt_list li").each(function(){
-$(".ctabbt_list li").eq(0).addClass("find_nav_cur").siblings().removeClass("find_nav_cur");
-});
-var nav_w=$(".ctabbt_list li").first().width();
-$(".sideline").width(nav_w);
-$(".ctabbt_list li").on('click', function(){
-	nav_w=$(this).width();
-	$(".sideline").stop(true);
-	$(".sideline").animate({left:$(this).position().left},300);
-	$(".sideline").animate({width:nav_w});
-	$(this).addClass("find_nav_cur").siblings().removeClass("find_nav_cur");
-	var fn_w = ($(".clist_tab_bt").width() - nav_w) / 2;
-	var fnl_l;
-	var fnl_x = parseInt($(this).position().left);
-	if (fnl_x <= fn_w) {
-		fnl_l = 0;
-	} else if (fn_w - fnl_x <= flb_w - fl_w) {
-		fnl_l = flb_w - fl_w;
-	} else {
-		fnl_l = fn_w - fnl_x;
-	}
-	$(".ctabbt_list").animate({
-		"left" : fnl_l
-	}, 300);
-	
-});
-var fl_w=$(".ctabbt_list").width();
-var flb_w=$(".ctabbt_left").width();
-$(".ctabbt_list").on('touchstart', function (e) {
-	var touch1 = e.originalEvent.targetTouches[0];
-	x1 = touch1.pageX;
-	y1 = touch1.pageY;
-	ty_left = parseInt($(this).css("left"));
-});
-$(".ctabbt_list").on('touchmove', function (e) {
-	var touch2 = e.originalEvent.targetTouches[0];
-	var x2 = touch2.pageX;
-	var y2 = touch2.pageY;
-	if(ty_left + x2 - x1>=0){
-		$(this).css("left", 0);
-	}else if(ty_left + x2 - x1<=flb_w-fl_w){
-		$(this).css("left", flb_w-fl_w);
-	}else{
-		$(this).css("left", ty_left + x2 - x1);
-	}
-	if(Math.abs(y2-y1)>0){
-		e.preventDefault();
-	}
-});
+    $(".ctabbt_list").animate({
+      "left" : fnl_l
+    }, 300);
+    
+  });
+  var fl_w=$(".ctabbt_list").width();
+  var flb_w=$(".ctabbt_left").width();
+  $(".ctabbt_list").on('touchstart', function (e) {
+    var touch1 = e.originalEvent.targetTouches[0];
+    x1 = touch1.pageX;
+    y1 = touch1.pageY;
+    ty_left = parseInt($(this).css("left"));
+  });
+  $(".ctabbt_list").on('touchmove', function (e) {
+    var touch2 = e.originalEvent.targetTouches[0];
+    var x2 = touch2.pageX;
+    var y2 = touch2.pageY;
+    if(ty_left + x2 - x1>=0){
+      $(this).css("left", 0);
+    }else if(ty_left + x2 - x1<=flb_w-fl_w){
+      $(this).css("left", flb_w-fl_w);
+    }else{
+      $(this).css("left", ty_left + x2 - x1);
+    }
+    if(Math.abs(y2-y1)>0){
+      e.preventDefault();
+    }
+  });
 </script>
 </body>
 </html>
