@@ -3,7 +3,7 @@
 namespace frontend\controllers;
 use yii\web\Controller;
 use Yii;    
-use frontend\models\token\token;
+use frontend\models\token\Token;
 use frontend\models\cart\Cart;
 class BaseController extends Controller
 {
@@ -13,6 +13,7 @@ class BaseController extends Controller
     {
         try 
         {  
+          
             //不需要驗證token的控制器名稱的數組
             $actions=Yii::$app->params['check_token_action'];
             //控制器名
@@ -25,8 +26,8 @@ class BaseController extends Controller
             $location=substr($url,2,strlen($url));
             //openid是否存在
             $session=Yii::$app->session;
-            $session['member']=['openid'=>'o2OSC09-ma0l6ZlYpIRAa9za0abc'];
-            if(!isset($session['member']['openid'])){return $this->redirect(['oauth/wei-xin','location'=>$location]);}
+            //$session['member']=['openid'=>'o2OSC09-ma0l6ZlYpIRAa9za0abc'];
+            if(!isset($session['member']['openid'])&&!$session['member']['openid']){$this->redirect(['oauth/wei-xin','location'=>$location]);}
             //存在數組中 不需要驗證token
             if(in_array($controllerID.'/'.$actionID,$actions))return true;
             //驗證token

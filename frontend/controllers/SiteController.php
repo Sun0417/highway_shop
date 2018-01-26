@@ -16,7 +16,13 @@ class SiteController extends BaseController
         try{if(!isset(Yii::$app->session['member']['token']))throw new \Exception('miss token',-1);$token=Yii::$app->session['member']['token'];}
         catch(\Exception $e){}
         //推荐    
-        try{$recommendType=Yii::$app->request->get('recommendType',false);if(!$recommendType) $recommendType=1;$recommend_list=Product::get_recommend_product($recommendType,$token);}
+        try
+        {
+            $recommendType=Yii::$app->request->get('recommendType',false);
+            if(!$recommendType) $recommendType=1;
+            $recommend_list=array();
+            $recommend_list=Product::get_recommend_product($recommendType,$token);
+        }
         catch(\Exception $e){}
         //幻灯片    
         try {$banner_list=array();$banner_list=Index::get_index_banner($token);}catch(\Exception $e){}

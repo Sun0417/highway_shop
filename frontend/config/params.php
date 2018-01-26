@@ -21,8 +21,10 @@ return [
                     'banner_list'=>'recommend/api-get-banner',//首页幻灯片
                     'category_list'=>'category/api-get-top-categories',//首页顶级分类
                     'recommend_list'=>'recommend/api-get-recommend-product-unit',//推荐热门
-                    'mark'=>'mark/api-mark',
-                    'cancle-mark'=>'mark/api-cancle-mark',
+                    'mark'=>'mark/api-mark',//关注 收藏 点赞
+                    'cancle-mark'=>'mark/api-cancle-mark',//取消关注 收藏 点赞
+                    'get-marker'=>'mark/api-get-marker',//获取点赞人数
+                    'get-follow-shops'=>'mark/api-get-follow-shops',//获取关注的店铺
                     'callback_url'=>'http://app1.zhengshan.store/smartShop/backend/web/index.php'
 			    ],
     'check_token_action'=>['reg/index','reg/send-code','reg/check-code'],

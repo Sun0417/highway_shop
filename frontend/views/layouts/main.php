@@ -16,15 +16,7 @@
 <script type="text/javascript" src="assets/shop/js/response.js"></script>
 </head>
 <link rel="stylesheet" type="text/css" href="assets/shop/css/loader.min.css">
-<script type="text/javascript">         
-    // 等待所有加载
-    $(window).load(function(){
-        $('body').addClass('loaded');
-        $('#loader-wrapper .load_title').remove();
-    }); 
-</script>  
 <body>
-<link rel="stylesheet" type="text/css" href="assets/shop/css/loader.min.css">
 <script type="text/javascript">         
     // 等待所有加载
     $(window).load(function(){

@@ -3,8 +3,8 @@
 namespace frontend\controllers;
 use frontend\controllers\BaseController;
 use yii\web\Controller;
-use frontend\models\product\product;
-use frontend\models\cart\cart;
+use frontend\models\product\Product;
+use frontend\models\cart\Cart;
 use Yii;    
 class ProductController extends BaseController
 {
@@ -15,23 +15,35 @@ class ProductController extends BaseController
     public function actionDetail()
     {
         $this->layout=false;
+       
+        //令牌
         try
         {
             $spuId=Yii::$app->request->get('spuId',false);if(!$spuId)throw new \Exception("miss spuId",-1);
-          
-            //令牌
             if(!isset(Yii::$app->session['member']['token']))throw new \Exception('miss token',-1);
             $token=Yii::$app->session['member']['token'];
-            //获取参数
-            $produt_detail=Product::get_product_deatil($spuId,$token);
-            //購物車
-            $cart_list=Cart::get_cart_list();
-            $flag=false;
-            if(isset($cart_list['detail'])&&$cart_list['detail']){$flag=true;}
+        }
+        catch(\Exception $e){}
+       //推荐    
+       try{$produt_detail=array();$produt_detail=Product::get_product_deatil($spuId,$token);}catch(\Exception $e){}
+       //获取点赞列表
+       try
+        {
+            $markType=3;
+            $lived_list=array();
+            $lived_list=Product::get_lived_list($markType,$produt_detail['sourceType'],$produt_detail['sourceId'],$token);
         }
         catch(\Exception $e){}
         //渲染
-        return $this->render('detail',['produt_detail'=>$produt_detail]);
+        return $this->render('detail',['produt_detail'=>$produt_detail,'lived_list'=>$lived_list]);
+    }
+    //==========================
+    //分类
+    public function actionCategory()
+    {
+        $this->layout=false;
+        //渲染
+        return $this->render('category');
     }
     //==========================
     //点赞商品

@@ -150,7 +150,7 @@ class Weixinjspi extends  Instance
                          alert('支付过程中用户取消！');
 
                      }else{
-                        alert('支付失败！');
+                        alert('支付失败(域名未备案)！');
                      }
                 }
             );

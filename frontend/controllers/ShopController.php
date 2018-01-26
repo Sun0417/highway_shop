@@ -2,7 +2,7 @@
 //我的关注
 namespace frontend\controllers;
 use frontend\controllers\BaseController;
-use frontend\models\shop\shop;
+use frontend\models\shop\Shop;
 use Yii;    
 class ShopController extends BaseController
 {

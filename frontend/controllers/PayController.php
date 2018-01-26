@@ -26,14 +26,14 @@ class PayController extends BaseController
 					$memo_index='memo_backend\models\orderFactory\shopOrderFactory_1_1';
 					$memo_value='国庆送';
 					$pay=(float)$order_list['pay'];
-					$order_res=Order::commit_order($pay,$address_index,$address_value,$memo_index,$memo_value);
-					//$order_res=array('orderId'=>'20154875454545454','payPrice'=>100);
+					//$order_res=Order::commit_order($pay,$address_index,$address_value,$memo_index,$memo_value);
+					$order_res=array('orderId'=>'20155545878966446884','payPrice'=>1);
 					//获取订单的信息
 					$order_=[
 						'goods_desc'=>'生鲜',
 						'order_sn' =>$order_res['orderId'],
 						'total_fee' =>$order_res['payPrice'],
-						'body'=>'',
+						'body'=>'1111',
 						'time_start' =>date("YmdHis"),
 						'time_expire'=>date("YmdHis", time() + 86400*300),
 						'goods_tag' =>'',
@@ -46,8 +46,9 @@ class PayController extends BaseController
 					if($result){$jsstr=$paymodel->getJs($result,$order_['order_sn']);}
 					echo $jsstr;
 				}
-				catch(\Exception $e){return Yii::$app->response->content="<script>alert('".$e->getMessage()."');</script>";}
+				catch(\Exception $e){}
 		}
+	
 		
     }
 }

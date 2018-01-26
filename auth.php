@@ -1,5 +1,5 @@
 <?php
-define("TOKEN", "KXR1ZyrpqIC71p8q"); // 定义自己的TOKEN值，并且与微信公众平台提供的值相同即可
+define("TOKEN", "zXQlLqUzJ06GAVkx"); // 定义自己的TOKEN值，并且与微信公众平台提供的值相同即可
 
 $wechatObj = new wechatCallbackapiTest();
 $wechatObj->valid();

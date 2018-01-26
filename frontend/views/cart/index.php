@@ -40,7 +40,7 @@
                                     <input type="checkbox" name="CheckboxGroup1" value="复选框" id="checkbox-1-1" class="ckbox">
                                     <label for="checkbox-1-1"></label>
                                    </div>--><?php //echo $vt_sku['skuCover']; ?>
-                                   <div class="scpro_img"><a href="javascript:;"><img src="assets/shop/img/proimg_01.png"></a></div>
+                                   <div class="scpro_img"><a href="<?php echo \yii\helpers\Url::to(['product/detail','spuId'=>$vt_sku['salesUnitId']]); ?>"><img src="<?php echo $vt_sku['cover']; ?>"></a></div>
                                    <div class="scpro_text">
                                      <h4><?php echo $vt_sku['title']; ?></h4>
                                      <p><span><?php echo $vt_sku['viceTitle'];?></span><small>￥<?php echo $vt_sku['price']; ?> x <?php echo $vt_sku['buyCount']; ?></small></p>

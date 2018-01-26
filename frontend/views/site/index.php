@@ -6,7 +6,6 @@
     <li><a href="javascript:;" class="ss_btn">搜索</a></li>
   </ul>
 </header>
-
 <article class="paddingbtm">
       <div id="slider" class="sybanner">
      <div id="slider" class="sybanner pcbanner">
@@ -55,7 +54,7 @@
           <p><?php echo $v['title'] ?></p>
         </a></div>
         <div class="splb_btm">
-         <a href="javascript:;" class="splb_yh">
+         <a href="<?php echo yii\helpers\Url::to(['shop/index']); ?>" class="splb_yh">
              <small>
              <?php if($v['shop']['avatar']): ?>
                  <img src="<?php echo $v['shop']['avatar'] ?>">

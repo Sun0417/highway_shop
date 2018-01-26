@@ -54,16 +54,17 @@
 <article class="paddingbtm">
   <div class="pd_publisher">
     <div class="pdp_left"><a href="<?php echo yii\helpers\Url::to(['shop/index']); ?>">
+    <?php if(isset($produt_detail['shop'])): ?>
         <small>
-          <?php if($produt_detail['shop']['avatar']): ?>
+        <?php if($produt_detail['shop']['avatar']): ?>
               <img src="<?php echo $produt_detail['shop']['avatar'] ?>">
             <?php else: ?>
               <img src="assets/shop/img/avatar.jpg">
-          <?php endif; ?> 
+        <?php endif; ?> 
         </small>
-    <span><?php echo $produt_detail['shop']['name']; ?></span>
+        <span><?php echo $produt_detail['shop']['name']; ?></span>
+    <?php endif; ?> 
     </a></div>
-
     <div class="pdp_right">
            <a href="javascript:;" class="iconfont follow" 
            data-id="<?php if(isset($produt_detail['shop']['followId'])&&!is_null($produt_detail['shop']['followId'])): ?><?php echo $produt_detail['shop']['followId']; ?>
@@ -99,7 +100,8 @@
    <div class="pdmai_right"><a href="javascript:;" class="gmbtn add_text" data-id="1">加入购物车</a><a href="javascript:;" class="gmbtn add_text_buy" data-id='2'>立即购买</a></div>
   </div>
   <div class="pd_fabulous">
-    <div class="pdf_top"><span>32个人觉得很牛逼</span></div>
+     <!--点赞功能-->      
+    <div class="pdf_top"><span><?php echo count($lived_list); ?>个人觉得很牛逼</span></div>
     <dl class="pdf_btm">
         <dd><a href="javascript:;" 
           data-id="<?php if(isset($produt_detail['upvoteId'])&&!is_null($produt_detail['upvoteId'])): ?><?php echo $produt_detail['upvoteId']; ?>
@@ -109,12 +111,28 @@
                             <?php else: ?>2<?php endif; ?>"
         class="iconfont <?php if(isset($produt_detail['upvoteId'])&&!is_null($produt_detail['upvoteId'])): ?>icon-yizan 
                           <?php else: ?>icon-dianzan<?php endif; ?> dianzhan"></a></dd><!--已点赞的话icon-dianzan改成 icon-dianzan icon-yizan-->
-      <dd><a href="javascript:;"><img src="assets/shop/img/tx_img_01.png"></a></dd>
+      <!--点赞功能-->      
+
+      <!--点赞列表-->           
+      <?php if(isset($lived_list)&&$lived_list): ?>
+        <?php foreach($lived_list as $v): ?>
+            <dd><a href="javascript:;">
+              <img 
+              src="<?php if(isset($v['avatar'])&&!is_null($v['avatar'])): ?>
+                      <?php echo $v['avatar'];  ?>
+                    <?php else: ?>
+                    assets/shop/img/avatar.jpg
+                  <?php endif; ?>">
+            </a>
+          </dd>
+        <?php endforeach; ?>  
+      <?php endif; ?>       
       <dt class="pdf_more"><a href="javascript:;" class=" iconfont icon-gengduo"></a></dt>
+     <!--点赞列表-->    
     </dl>
   </div>
-  <div class="pd_comment">
-    <!-- <div class="pdc_top">评论(71)</div> -->
+  <!-- <div class="pd_comment">
+    <div class="pdc_top">评论(71)</div>
     <ul class="pdc_btm">
        <li>
          <div class="pdc_people"><small><a href="javascript:;"><img src="assets/shop/img/tx_img_04.png"></a></small><span>看不清的脸庞丶</span><i>1月13日 18:21</i></div>
@@ -136,7 +154,7 @@
          </div>
        </li>
     </ul>
-  </div>
+  </div> -->
   <div class="popup_mask" style="display:none;"></div>
   <!--回复功能弹窗-->
   <div class="pdpm_reply" style="display:none;">
@@ -184,7 +202,7 @@
   </div>
 </article>
 <footer>
-    <ul class="ab_rightbtn">
+    <ul class="ab_rightbtnsb">
       <li class="blackbtn"><a href="<?php echo yii\helpers\Url::to(['site/index']); ?>" class="iconfont icon-shouye">首页</a></li>
       <li class="blackbtn"><a href="javascript:;" class="iconfont icon-kefu">客服</a></li>
       <li class="blackbtn">
@@ -198,58 +216,33 @@
                           <?php else: ?> icon-shoucang<?php endif; ?> shoucang">收藏</a>
       </li><!--已收藏的话icon-shoucang改成 icon-yicang-->
       <li class="blackbtn"><a href="<?php echo yii\helpers\Url::to(['cart/index']); ?>" class="iconfont icon-gouwuche">购物车</a></li>
-      <li><a href="javascript:;" class="hfbtn">写评论</a></li> -->
+      <!-- <li><a href="javascript:;" class="hfbtn">写评论</a></li> --> -->
     </ul>
 </footer>
-<script src="assets/shop/js/jquery-2.1.1.js"></script>
 <script type="text/javascript" src="assets/shop/js/jimiAlert.js"></script>
 <script type="text/javascript" src="assets/shop/js/controller.js"></script>
 <script>
-  
-      function chooseImage(obj){
-        // 选择张片
-        wx.chooseImage({
-            count: 1, // 默认9
-            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-            success: function(res) {
-                var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-                $('.icon-xzimg').css('display','none');
-                $('.img').css('display','block');
-                $('.img_url').attr('src', localIds);
-                // 上传照片
-                // wx.uploadImage({
-                //     localId: '' + localIds,
-                //     isShowProgressTips: 1,
-                //     success: function(res) {
-                //         serverId = res.serverId;
-                //         $(obj).next().val(serverId); // 把上传成功后获取的值附上
-                //     }
-                // });
-            }
-        });
-    }     
-  //多張圖片
-  var images = $(".pd_imgyun a").find("img");  
-  var imgPaths = [];  
-  images.each(function(){  
-    imgPaths.push(this.src);  
+ $(document).ready(function(e) {
+	var aa = $(".pdf_btm > dd,.pdf_btm > dt").innerWidth(); 
+    $(".pdf_btm > dd,.pdf_btm > dt").css('height',aa); 
+    var le=$('.pdf_btm dd').length;
+	if(le<=15)
+	{
+	  $('.pdf_more').css('display','none');
+	}
+	$(".pdf_more").toggle(
+    function()
+	 {
+	    $(".pdf_btm > dd:gt(14)").css('display','inline-block');
+	    $(".icon-gengduo").addClass('icon-shouqi').removeClass('icon-gengduo');
+	 },
+    function()
+	{
+		$(".pdf_btm > dd:gt(14)").css('display','none');
+		$(".icon-shouqi").addClass('icon-gengduo').removeClass('icon-shouqi');
+    }  
+  );
   });  
-  images.on("click",function(){  
-    wx.previewImage({  
-        current: this.src,  
-        urls: imgPaths  
-    });  
-  });    
-  //但張圖片 
-  function previewImage(obj){
-     var img=$(obj).attr('data-val');
-      // 选择张片
-      wx.previewImage({
-        current:img, // 当前显示图片的http链接
-        urls: [img] // 需要预览的图片http链接列表
-    });
-  }
 //设置文字
 //=============================================
 //点赞  收藏  關注
@@ -275,10 +268,12 @@ $(function (){
                           that.attr('data-id',<?php echo $produt_detail['sourceId']?>+','+<?php echo $produt_detail['sourceType']?>);that.attr('data-val',2);
                           that.addClass('icon-dianzan');
                           that.removeClass('icon-yizan');
+                          location.reload();
                         }else{
                           that.attr('data-id',data.LikedId);that.attr('data-val',1);
                           that.removeClass('icon-dianzan');
                           that.addClass('icon-yizan');
+                          location.reload();
                         }
                     },
                     error:function(res){
@@ -427,12 +422,9 @@ $(document).ready(function(e) {
         }
        
    })
-  var le=$('.pdf_btm dd').length;
-	if(le<=15){ $('.pdf_more').css('display','none');}}); 
-  $(".pdf_more").toggle(
-      function(){$(".pdf_btm > dd:gt(14)").css('display','inline-block');$(".icon-gengduo").addClass('icon-shouqi').removeClass('icon-gengduo');},
-      function(){$(".pdf_btm > dd:gt(14)").css('display','none');$(".icon-shouqi").addClass('icon-gengduo').removeClass('icon-shouqi');}  
-  );
+  
+}); 
+
 </script> 
 </body>
 </html>

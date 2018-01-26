@@ -216,14 +216,14 @@ $(function(){
                 }
             })
         })
-      //編輯跳轉
-      $('.edit').click(function(){
-          //遍歷所有的radio，獲取選擇的值
-           address_id=get_radio_check();
-          //跳轉編輯頁面
-          $location_url='<?php echo yii\helpers\Url::to(['address/del-address']);?>'+'&address_id='+address_id;
-          location.href= $location_url;
-      })
+    //   //編輯跳轉
+    //   $('.edit').click(function(){
+    //       //遍歷所有的radio，獲取選擇的值
+    //        address_id=get_radio_check();
+    //       //跳轉編輯頁面
+    //       $location_url='<?php echo yii\helpers\Url::to(['address/del-address']);?>'+'&address_id='+address_id;
+    //       location.href= $location_url;
+    //   })
 })
 </script>
 </body>
