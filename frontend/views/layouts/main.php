@@ -39,7 +39,7 @@
      
     <a href="<?php echo \yii\helpers\Url::to(['cart/index']); ?>" class="iconfont icon-gouwuche">
     購物車
-    <?php if(isset(Yii::$app->session['member']['is_cart'])&&Yii::$app->session['member']['is_cart']): ?><i></i><?php endif; ?>
+    <?php if(isset(Yii::$app->session['cart']['is_cart'])&&Yii::$app->session['cart']['is_cart']): ?><i></i><?php endif; ?>
     </a>
     </li>
     <!-- <li class="<?php echo isset($this->params['message'])?$this->params['message']:''; ?>"><a href="<?php echo \yii\helpers\Url::to(['message/index']); ?>" class="iconfont icon-xiaoxi">消息<i></i></a></li> -->

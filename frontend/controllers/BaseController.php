@@ -33,23 +33,36 @@ class BaseController extends Controller
             //驗證token
             $check_res=Token::check_token();
             //正常情況 token存在並且沒有過期
-            if($check_res)return true;
+            if($check_res)
+            {
+                $this->get_cart_status();
+                return true;
+            };
             //token不存在或者已經過期 直接請求獲取token接口
             $token_status=Token::get_token();
             //通過  //獲取成功
             if($token_status)
             {
-                try{
-                    $cart_list=Cart::get_cart_list();
-                    if(count($cart_list)>0){$session['member']['is_cart']=0;}
-                   
-                }catch(\Exception $e){}
+                $this->get_cart_status();
                 return true;
             }
             //失敗
             return $this->redirect(['reg/index']);  
         }
         catch(\Exception $e){echo Yii::$app->response->content="<script>alert('".$e->getMessage()."');history.go(-1);</script>";}
+    }
+    //=============================
+    //获取购物车状态
+    public function get_cart_status()
+    {
+        try{
+            $session=Yii::$app->session;
+            $cart_list=Cart::get_cart_list();
+            if(isset($cart_list)
+                &&$cart_list['isEffective'])
+                {$session['cart']=['is_cart'=>true];}
+            else $session['cart']=['is_cart'=>false];
+        }catch(\Exception $e){}
     }
 }
 

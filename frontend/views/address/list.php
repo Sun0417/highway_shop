@@ -122,7 +122,7 @@ $(document).ready(function(e) {
 <article class="paddingbtm">
   <div class="r_address">
   <form name="form1" method="post" action="">
-    <?php if($address_list): ?>
+    <?php if(isset($address_list)&&$address_list): ?>
       <?php foreach($address_list as $key=>$v): ?>
       <ul class='address_<?php echo $v['id'];?>'>
           <li class="r_address_li ">
@@ -156,7 +156,7 @@ $(document).ready(function(e) {
     <!--<li class="blackbtn"><a href="javascript:;" class="iconfont icon-moren">默認</a></li>-->
     <li class="blackbtn"><a href="javascript:;" class="iconfont icon-bianji edit">編輯</a></li>
     <li class="blackbtn"><a href="javascript:;" class="iconfont icon-shanchu del">删除</a></li>
-    <li><a href="<?php echo \yii\helpers\Url::to(['address/add']); ?>">新增地址</a></li>
+    <li><a href="<?php echo \yii\helpers\Url::to(['address/add']); ?>&type=2">新增地址</a></li>
   </ul>
 </footer>
 <script src="assets/shop/js/jquery-2.1.1.js"></script>

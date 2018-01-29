@@ -27,7 +27,7 @@ class SiteController extends BaseController
         //幻灯片    
         try {$banner_list=array();$banner_list=Index::get_index_banner($token);}catch(\Exception $e){}
         //分类列表    
-        try{ $category_list=array();$category_list=Index::get_index_cate($token);}catch(\Exception $e){}
+        try{$category_list=array();$category_list=Index::get_index_cate($token);}catch(\Exception $e){}
        //視圖
        $view = Yii::$app->view;
        //視圖賦值

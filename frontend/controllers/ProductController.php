@@ -15,7 +15,6 @@ class ProductController extends BaseController
     public function actionDetail()
     {
         $this->layout=false;
-       
         //令牌
         try
         {
@@ -36,14 +35,6 @@ class ProductController extends BaseController
         catch(\Exception $e){}
         //渲染
         return $this->render('detail',['produt_detail'=>$produt_detail,'lived_list'=>$lived_list]);
-    }
-    //==========================
-    //分类
-    public function actionCategory()
-    {
-        $this->layout=false;
-        //渲染
-        return $this->render('category');
     }
     //==========================
     //点赞商品

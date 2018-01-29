@@ -81,6 +81,7 @@
             if(!address){alert('請輸入具體地址');return false;}
             //郵編
             var postCode=$('.postCode').val();
+            var type='';
             loaderHelper.show({'text':"地址添加中...."});
             $.ajax({
                   type: 'POST',
@@ -91,7 +92,11 @@
                       if(typeof data=='string')data=JSON.parse(data);
                       if(data.error!=0){alert(data.message);return false;}
                       alert(data.message);
-                      location.href="<?php echo yii\helpers\Url::to(['address/list']);?>";
+                      type=<?php echo $_GET['type']; ?>;
+                      if(type==1){
+                        location.href="<?php echo yii\helpers\Url::to(['address/address-selection']);?>";}
+                     else
+                        location.href="<?php echo yii\helpers\Url::to(['address/list']);?>"; 
                   },
                   error:function(res){
                       loaderHelper.hide();

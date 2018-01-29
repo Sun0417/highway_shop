@@ -144,13 +144,14 @@ class Weixinjspi extends  Instance
                      if(res.err_msg == \"get_brand_wcpay_request:ok\")
                      {
                          alert('支付成功！');
-                         location.reload();
+                         location.href='/highway_shop/frontend/web/index.php?r=order/payment-success';
                      }else if(res.err_msg == \"get_brand_wcpay_request:cancel\")
                      {
                          alert('支付过程中用户取消！');
-
+                         location.href='/highway_shop/frontend/web/index.php?r=order/order-list';
                      }else{
-                        alert('支付失败(域名未备案)！');
+                        alert('支付失败！');
+                        location.href='/highway_shop/frontend/web/index.php?r=order/order-list';
                      }
                 }
             );

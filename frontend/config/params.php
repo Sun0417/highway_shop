@@ -2,6 +2,7 @@
 return [
     'adminEmail' => 'admin@example.com',
     'api_url'=>'http://app1.zhengshan.store/smartShop/backend/web/index.php?r=',
+    'pageSize'=>15,
     //请求的接口
     'post_url'=>[
     				'member_sign_wechat'=>'member/api-get-token-by-wechat-open-id',
@@ -25,6 +26,9 @@ return [
                     'cancle-mark'=>'mark/api-cancle-mark',//取消关注 收藏 点赞
                     'get-marker'=>'mark/api-get-marker',//获取点赞人数
                     'get-follow-shops'=>'mark/api-get-follow-shops',//获取关注的店铺
+                    'get-collect-products'=>'mark/api-get-collect-products',//获取收藏的产品
+                    'get-category-childs'=>'category/api-get-childs',//首页子分类
+                    'get-products-by-category'=>'category/api-get-products-by-category',//获取子分类下的产品
                     'callback_url'=>'http://app1.zhengshan.store/smartShop/backend/web/index.php'
 			    ],
     'check_token_action'=>['reg/index','reg/send-code','reg/check-code'],

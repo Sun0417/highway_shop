@@ -215,7 +215,10 @@
         class="iconfont <?php if(isset($produt_detail['collectionId'])&&!is_null($produt_detail['collectionId'])): ?>icon-yicang 
                           <?php else: ?> icon-shoucang<?php endif; ?> shoucang">收藏</a>
       </li><!--已收藏的话icon-shoucang改成 icon-yicang-->
-      <li class="blackbtn"><a href="<?php echo yii\helpers\Url::to(['cart/index']); ?>" class="iconfont icon-gouwuche">购物车</a></li>
+      <li class="blackbtn"><a href="<?php echo yii\helpers\Url::to(['cart/index']); ?>" class="iconfont icon-gouwuche">购物车
+      <?php if(isset(Yii::$app->session['cart']['is_cart'])&&Yii::$app->session['cart']['is_cart']): ?><i></i><?php endif; ?>
+       </a>
+    </li>
       <!-- <li><a href="javascript:;" class="hfbtn">写评论</a></li> --> -->
     </ul>
 </footer>

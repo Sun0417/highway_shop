@@ -15,8 +15,10 @@ class OrderController extends BaseController
     public function actionIndex()
     {
         $this->layout=false;
+        $order_list=array();
         try{$order_list=Order::get_order_detail();}
-        catch(\Exception $e){return Yii::$app->response->content="<script>alert('".$e->getMessage()."');history.go(-1);</script>";}
+        catch(\Exception $e){}
+        //print_r($order_list);die;
         //渲染
         return $this->render('index',['order_list'=>$order_list]);
     }
@@ -26,15 +28,16 @@ class OrderController extends BaseController
     {
         $this->layout=false;
          //獲取地址列表
-         try{$list=Address::get_address();}
-         catch(\Exception $e){return Yii::$app->response->content="<script>alert('".$e->getMessage()."');history.go(-1);</script>";}
          try{$order_list=Order::get_order_detail();}
-         catch(\Exception $e){return Yii::$app->response->content="<script>alert('".$e->getMessage()."');history.go(-1);</script>";}
+         catch(\Exception $e){}
         if(Yii::$app->request->isPost)
         {
             $post=Yii::$app->request->post();
+            $session=Yii::$app->session;
+            if(isset($session['order'])){unset($session['order']);}
+            $session['order']=$post;
         }
-        return $this->render('confirm-order',['address_list'=>$list,'order_list'=>$order_list]);
+        return $this->render('confirm-order',['order_list'=>$order_list]);
     }
     //==========================
     //訂單購買
@@ -71,5 +74,12 @@ class OrderController extends BaseController
         // catch(\Exception $e){return Yii::$app->response->content="<script>alert('".$e->getMessage()."');history.go(-1);</script>";}
         //渲染
         return $this->render('order-list');
+    }
+    //=========================
+    //支付成功
+    public  function actionPaymentSuccess()
+    {
+        $this->layout=false;
+        return $this->render('payment-success');
     }
 }

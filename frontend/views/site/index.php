@@ -36,7 +36,7 @@
   <ul class="syclassify">
     <?php foreach($category_list as $v):?>
     <li>
-      <a href="<?php echo \yii\helpers\Url::to(['product/category']); ?>">
+      <a href="<?php echo \yii\helpers\Url::to(['category/index','category_id'=>$v['id']]); ?>">
         <p><img src="<?php echo $v['icon'] ?>"></p>
         <p><?php echo $v['name'] ?></p>
       </a>

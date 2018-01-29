@@ -17,6 +17,7 @@
     function pay_(id)
     {
         var address_id=$('.icon-more').attr('data-id');
+        if(!address_id){alert('请先去填写地址！');location.href="<?php echo \yii\helpers\Url::to(['address/address-selection']); ?>";}
         $.ajax({
             type:"get",
             url:"<?php echo \yii\helpers\Url::to(['pay/index']); ?>",//这是访问的地址
@@ -40,23 +41,19 @@
 <article class="paddingbtm confirm">
     <ul class="ac_ul">
       <li><span>订单金额：</span><small><strong>￥<?php echo $order_list['price'] ?></strong></small></li>
-      <li class='select_address'><span>配送地址：</span><small><a href="javascript:;" class="iconfont icon-more">请选择地址</a></small></li>
+      <li class='select_address'><span>配送地址：</span><small><a href="<?php echo \yii\helpers\Url::to(['address/address-selection']); ?>" 
+      class="iconfont icon-more"
+      data-id=<?php if(isset($_SESSION['order_address'])&&$_SESSION['order_address']['address_id']): ?>
+      <?php echo $_SESSION['order_address']['address_id']; ?>
+      <?php endif; ?>>
+      <?php if(isset($_SESSION['order_address'])&&$_SESSION['order_address']['address']): ?>
+        <?php echo $_SESSION['order_address']['address']; ?>
+        <?php else: ?>
+        请选择地址
+      <?php endif; ?>
+     
+    </a></small></li>
     </ul>
-</article>
-<article class="paddingbtm addresss" style='display:none;'>
-  <div class="r_address as_ul">
-  <ul>
-     <?php foreach($address_list as $v): ?>
-        <li class="r_address_li address" data-id='<?php echo $v['id'] ?>'>
-            <a class="ra_text">
-            <h5><span><?php echo $v['name']; ?></span><span><?php echo $v['phone']; ?></span></h5>
-            <p><?php $address=str_replace("市辖区,","",$v['areaFullName']); echo str_replace(","," ",$address)?><?php echo $v['address']; ?></p>
-            <input type='hidden' class='address_content_<?php echo $v['id'] ?>' value='<?php $address=str_replace("市辖区,","",$v['areaFullName']); echo str_replace(","," ",$address)?><?php echo $v['address']; ?>' />
-            </a>
-        </li>
-    <?php endforeach;?>
-  </ul>
-  </div>
 </article>
 <footer>
   <ul class="ab_rightbtn">
@@ -64,23 +61,5 @@
   </ul>
 </footer>
 <script src="assets/shop/js/jquery-2.1.1.js"></script>
-<script>
-    $('.select_address').click(function(){
-        $(document).attr("title","地址选择");
-        var id=$('.address').attr('data-id');
-        if(!id){alert('请先去填写地址！');location.href="<?php echo \yii\helpers\Url::to(['address/add']); ?>";}
-        $('.confirm').css('display','none');
-        $('.addresss').css('display','block');
-    })
-    $('.address').click(function(){
-        $(document).attr("title","金额确认");
-        var id=$(this).attr('data-id');
-        var address=$('.address_content_'+id).val();
-        $('.icon-more').html(address);
-        $('.icon-more').attr('data-id',id);
-        $('.confirm').css('display','block');
-        $('.addresss').css('display','none');
-    })
-</script>
 </body>
 </html>

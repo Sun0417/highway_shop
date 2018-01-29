@@ -41,9 +41,9 @@ return [
             'class'=>'common\widgets\payment\Instance',
                 'weixinjspi_config' => [
 						'appid'     => 'wxe96c36ae44491a19',//微信的appid
-						'secret'    => '84466f984f93188811bcd4f0d2ed63c2',//appsecret，在申请完公众号以后可以看到
+						'secret'    => '',//appsecret，在申请完公众号以后可以看到
 						'mch_id'    => '1497751852',//商户号
-						'key'       => 'B8pS2LvCmtv0BFGb9jnNK5YPcU2uoBvt',//key需要设置
+						'key'       => '',//key需要设置
 						'cert_path' => '',//可以不用填写
 						'key_path'  => '',//可以不用填写
                 ],

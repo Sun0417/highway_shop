@@ -14,20 +14,23 @@ class AddressController extends BaseController
     public function actionList()
     {
         $this->layout=false;
+        $list=array();
         //獲取地址列表
         try{$list=Address::get_address();}
-        catch(\Exception $e){return Yii::$app->response->content="<script>alert('".$e->getMessage()."');history.go(-1);</script>";}
+        catch(\Exception $e){}
         //渲染
         return $this->render('list',['address_list'=>$list]);
+        //return Yii::$app->response->content="<script>alert('".$e->getMessage()."');history.go(-1);</script>";
     }
     //======================
     //地址选择页面
     public function actionAddressSelection()
     {
         $this->layout=false;
+        $list=array();
         //獲取地址列表
-        try{$list=Address::get_address();}
-        catch(\Exception $e){return Yii::$app->response->content="<script>alert('".$e->getMessage()."');history.go(-1);</script>";}
+       try{$list=Address::get_address();}
+       catch(\Exception $e){}
         //渲染
         return $this->render('address-selection',['address_list'=>$list]);
     }
@@ -62,6 +65,17 @@ class AddressController extends BaseController
         catch(\Exception $e){return \yii\helpers\Json::encode(['error'=>$e->getCode(),'message'=>$e->getMessage()]);}
         //渲染
         return $this->render('add');
+    }
+    //======================
+    //地址选择
+    public function actionSelectAddress()
+    {
+        $this->layout=false;
+        $post=Yii::$app->request->post();
+        $session=Yii::$app->session;
+        $session['order_address']=['address'=>$post['address'],'address_id'=>$post['id']];
+       //渲染
+       return \yii\helpers\Json::encode(['error'=>0]);
     }
     //======================
     //地址刪除

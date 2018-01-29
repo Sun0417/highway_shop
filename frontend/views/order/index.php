@@ -17,6 +17,7 @@
 <form action='<?php echo \yii\helpers\Url::to(['order/confirm-order']); ?>' method='post'>
   <article class="paddingbtm">
   <?php if($order_list['isEffective']&&isset($order_list['childOrder'])): ?> 
+    <input type="hidden" name="<?php echo 'address_'.$order_list['index']; ?>"  placeholder="如果您有什么特殊的要求，请在此备注">
       <?php foreach($order_list['childOrder'] as $vt): ?>
             <dl class="coodl">
               <dt><?php echo $vt['title']; ?></dt>
@@ -27,13 +28,12 @@
                 <p><?php echo $vt_sku['viceTitle']; ?></p>
               </dd>
               <dd><span>运费：</span><small>￥<?php echo $vt['freight']; ?></small></dd>
-              
               <?php  endforeach;?>    
               <?php endif;?>
+              <dd><span>备注：</span><small><input type="text" name="memo_<?php echo $vt['index']; ?>"  placeholder="如果您有什么特殊的要求，请在此备注"></small></dd>
             </dl>
       <?php  endforeach;?>
     <dl class="coodl"> 
-      <dd><span>备注：</span><small><input type="text" name="<?php echo $vt['index']; ?>" placeholder="如果您有什么特殊的要求，请在此备注"></small></dd> 
       <dd><span>总价：</span><small><strong>￥<?php echo $order_list['price']; ?></strong></small></dd>
     </dl>
   <?php endif;?>
